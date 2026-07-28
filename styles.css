@@ -2149,7 +2149,7 @@ img {
 /* Timeline progress */
 .progress-timeline {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     margin: 30px 0;
     position: relative;
@@ -2162,7 +2162,8 @@ img {
     align-items: center;
     gap: 6px;
     z-index: 2;
-    flex: 1;
+    flex-shrink: 0;
+    width: 70px;
     text-align: center;
 }
 
@@ -2195,9 +2196,13 @@ img {
 }
 
 .step-label {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
     font-weight: 600;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+    width: 75px;
 }
 
 .timeline-step.step-active .step-label {
@@ -2209,12 +2214,12 @@ img {
 }
 
 .timeline-line {
-    height: 3px;
+    height: 4px;
     background: var(--dark-border);
     flex-grow: 1;
-    position: relative;
-    top: -19px;
     z-index: 1;
+    margin-top: 14px; /* Align to the center of the 32px circles */
+    min-width: 12px;
 }
 
 .timeline-line.active {
@@ -2268,36 +2273,23 @@ img {
     font-weight: 600;
 }
 
-/* ==========================================================================
-   MOBILE HEADER SEARCH RESPONSIVENESS
-   ========================================================================== */
-.nav-search-mobile {
-    width: 100%;
-    margin-top: 10px;
-    display: none;
-}
-
-.nav-search-mobile input {
-    width: 100%;
-    background: var(--dark-surface);
-    border: 1px solid var(--dark-border);
-    color: #FFF;
-    padding: 10px 14px;
-    border-radius: var(--radius-md);
-    font-size: 0.88rem;
-    outline: none;
-    transition: var(--transition-fast);
-}
-
-.nav-search-mobile input:focus {
-    border-color: var(--primary);
+.mobile-only-search {
+    display: none !important;
 }
 
 @media (max-width: 768px) {
-    .nav-search-mobile {
-        display: block;
+    .mobile-only-search {
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+        color: var(--secondary) !important;
+        font-weight: 700 !important;
+        border-top: 1px solid var(--dark-border);
+        width: 100%;
+        padding-top: 14px !important;
+        margin-top: 6px;
     }
     #search-btn {
-        display: none;
+        display: none !important;
     }
 }

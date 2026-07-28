@@ -730,19 +730,36 @@ function setupEventListeners() {
         });
     });
 
-    // Search input & Mobile search input
-    const mobileSearch = document.getElementById("mobile-search");
-    if (mobileSearch) {
-        mobileSearch.addEventListener("input", (e) => {
-            state.searchQuery = e.target.value;
-            if (elements.menuSearch) elements.menuSearch.value = e.target.value;
-            renderMenu();
+    // Search Triggers & Focus Logic
+    const searchBtn = document.getElementById("search-btn");
+    const mobileSearchBtn = document.getElementById("mobile-search-btn");
+
+    function focusMenuSearch() {
+        setTimeout(() => {
+            if (elements.menuSearch) {
+                elements.menuSearch.focus();
+                elements.menuSearch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 100);
+    }
+
+    if (searchBtn) {
+        searchBtn.addEventListener("click", focusMenuSearch);
+    }
+
+    if (mobileSearchBtn) {
+        mobileSearchBtn.addEventListener("click", () => {
+            // Close mobile menu
+            if (hamburger && navMenu) {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            }
+            focusMenuSearch();
         });
     }
 
     elements.menuSearch.addEventListener("input", (e) => {
         state.searchQuery = e.target.value;
-        if (mobileSearch) mobileSearch.value = e.target.value;
         renderMenu();
     });
 
