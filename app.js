@@ -289,6 +289,7 @@ const elements = {
     categoryPills: document.querySelectorAll(".cat-pill"),
     filterSpicyCheck: document.getElementById("filter-spicy"),
     filterSpecialCheck: document.getElementById("filter-special"),
+    filterHalalCheck: document.getElementById("filter-halal"),
     
     // Cart Drawer
     cartToggleBtn: document.getElementById("cart-toggle-btn"),
@@ -388,6 +389,7 @@ function renderMenu() {
         // Checkbox filters
         if (state.filterSpicy && !item.isSpicy) return false;
         if (state.filterSpecial && !item.isSpecial) return false;
+        if (state.filterHalal && !item.isHalal) return false;
 
         return true;
     });
@@ -741,6 +743,10 @@ function setupEventListeners() {
     });
     elements.filterSpecialCheck.addEventListener("change", (e) => {
         state.filterSpecial = e.target.checked;
+        renderMenu();
+    });
+    elements.filterHalalCheck.addEventListener("change", (e) => {
+        state.filterHalal = e.target.checked;
         renderMenu();
     });
 

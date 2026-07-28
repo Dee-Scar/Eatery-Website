@@ -1031,6 +1031,8 @@ img {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .card-price {
@@ -1038,12 +1040,21 @@ img {
     font-size: 1.35rem;
     font-weight: 800;
     color: var(--text-primary);
+    white-space: nowrap;
 }
 
 .card-actions {
     display: flex;
     align-items: center;
     gap: 8px;
+    max-width: 100%;
+}
+
+.card-actions .btn {
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    max-width: 100%;
 }
 
 /* Reviews Section */
@@ -2233,8 +2244,34 @@ img {
     }
     .deal-price-row {
         flex-wrap: wrap;
+        gap: 12px;
     }
     .deal-info {
         padding: 20px 16px;
+    }
+    .card-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .card-actions {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+    }
+    .card-actions .btn {
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+        padding: 8px 4px;
+        font-size: 0.8rem;
+    }
+    .customizer-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    .customizer-footer .btn {
+        width: 100%;
     }
 }
