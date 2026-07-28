@@ -12,6 +12,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <!-- Preload critical images for instant rendering -->
+    <link rel="preload" href="images/shawarma.webp" as="image" type="image/webp">
+    <link rel="preload" href="images/french_fries.webp" as="image" type="image/webp">
+    <link rel="preload" href="images/bbq_grill.webp" as="image" type="image/webp">
+
     <!-- CSS stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -112,7 +117,7 @@
                 <div class="hero-visual">
                     <div class="hero-card-floating">
                         <div class="hero-image-wrapper">
-                            <img src="images/shawarma.png" alt="Signature Shawarma Wrap" class="hero-img">
+                            <img src="images/shawarma.webp" alt="Signature Shawarma Wrap" class="hero-img" fetchpriority="high" decoding="async" width="600" height="400">
                             <span class="tag-hot">BESTSELLER</span>
                         </div>
                         <div class="hero-card-details">
@@ -176,7 +181,7 @@
                 <div class="deal-card deal-main">
                     <div class="deal-badge">SAVE 25%</div>
                     <div class="deal-img-box">
-                        <img src="images/combo_meal.png" alt="Ultimate Grill Feast Combo">
+                        <img src="images/combo_meal.webp" alt="Ultimate Grill Feast Combo" loading="lazy" decoding="async" width="600" height="400">
                     </div>
                     <div class="deal-info">
                         <div class="deal-timer-box">
@@ -196,7 +201,7 @@
                 <div class="deal-card deal-secondary">
                     <div class="deal-badge">POPULAR</div>
                     <div class="deal-img-box">
-                        <img src="images/french_fries.png" alt="Loaded Fries Supreme">
+                        <img src="images/french_fries.webp" alt="Loaded Fries Supreme" loading="lazy" decoding="async" width="600" height="400">
                     </div>
                     <div class="deal-info">
                         <h3>Loaded Cheese & Jalapeño Fries</h3>

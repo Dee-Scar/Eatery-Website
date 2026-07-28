@@ -16,7 +16,7 @@ const MENU_ITEMS = [
         isSpicy: true,
         isSpecial: true,
         isHalal: true,
-        image: "images/shawarma.png",
+        image: "images/shawarma.webp",
         description: "Thinly shaved flame-roasted beef & tender chicken wrapped in warm toasted pita with garlic toum, pickles, and crisp veggies."
     },
     {
@@ -31,7 +31,7 @@ const MENU_ITEMS = [
         isSpicy: true,
         isSpecial: false,
         isHalal: true,
-        image: "images/shawarma.png",
+        image: "images/shawarma.webp",
         description: "Spicy marinated chicken shawarma with red harissa sauce, jalapeños, cabbage, and homemade garlic mayo."
     },
     {
@@ -46,7 +46,7 @@ const MENU_ITEMS = [
         isSpicy: false,
         isSpecial: true,
         isHalal: true,
-        image: "images/shawarma.png",
+        image: "images/shawarma.webp",
         description: "Slow-roasted spiced lamb & beef with melted cheddar cheese blend, tahini sauce, and caramelized onions."
     },
     {
@@ -61,7 +61,7 @@ const MENU_ITEMS = [
         isSpicy: false,
         isSpecial: true,
         isHalal: false,
-        image: "images/french_fries.png",
+        image: "images/french_fries.webp",
         description: "Hand-cut crispy double-fried russet potatoes smothered in warm cheddar sauce, bacon bits, and chopped chives."
     },
     {
@@ -76,7 +76,7 @@ const MENU_ITEMS = [
         isSpicy: true,
         isSpecial: false,
         isHalal: true,
-        image: "images/french_fries.png",
+        image: "images/french_fries.webp",
         description: "Golden crispy fries drenched in rich cheese sauce, spicy pickled jalapeños, and smoky chipotle mayo."
     },
     {
@@ -91,7 +91,7 @@ const MENU_ITEMS = [
         isSpicy: false,
         isSpecial: false,
         isHalal: true,
-        image: "images/french_fries.png",
+        image: "images/french_fries.webp",
         description: "Crispy french fries tossed in roasted garlic oil, aged parmesan cheese, rosemary, and parsley."
     },
     {
@@ -106,7 +106,7 @@ const MENU_ITEMS = [
         isSpicy: true,
         isSpecial: true,
         isHalal: true,
-        image: "images/bbq_grill.png",
+        image: "images/bbq_grill.webp",
         description: "Flame-grilled hickory smoked ribs and suya spiced beef skewers served with grilled corn and signature dip."
     },
     {
@@ -121,7 +121,7 @@ const MENU_ITEMS = [
         isSpicy: true,
         isSpecial: true,
         isHalal: true,
-        image: "images/bbq_grill.png",
+        image: "images/bbq_grill.webp",
         description: "Tender chicken thighs dusted in authentic West African peanut suya spice and grilled over white-hot charcoal."
     },
     {
@@ -136,7 +136,7 @@ const MENU_ITEMS = [
         isSpicy: false,
         isSpecial: false,
         isHalal: true,
-        image: "images/bbq_grill.png",
+        image: "images/bbq_grill.webp",
         description: "Marinated half chicken flame-roasted to juicy perfection, brushed with smoky sweet honey BBQ glaze."
     },
     {
@@ -151,7 +151,7 @@ const MENU_ITEMS = [
         isSpicy: false,
         isSpecial: true,
         isHalal: false,
-        image: "images/burger.png",
+        image: "images/burger.webp",
         description: "Two 100% Angus beef patties, double melted cheddar, crispy smoked bacon, caramelized onions on brioche."
     },
     {
@@ -166,7 +166,7 @@ const MENU_ITEMS = [
         isSpicy: true,
         isSpecial: false,
         isHalal: true,
-        image: "images/burger.png",
+        image: "images/burger.webp",
         description: "Buttermilk fried spicy chicken breast, dill pickles, crunchy coleslaw, and fiery red habanero sauce."
     },
     {
@@ -181,7 +181,7 @@ const MENU_ITEMS = [
         isSpicy: true,
         isSpecial: true,
         isHalal: true,
-        image: "images/combo_meal.png",
+        image: "images/combo_meal.webp",
         description: "1 Supreme Shawarma Wrap, 1 Large Loaded Cheese Fries, 4 Flame BBQ Wings + 1 Gourmet Chilled Milkshake."
     },
     {
@@ -196,7 +196,7 @@ const MENU_ITEMS = [
         isSpicy: false,
         isSpecial: false,
         isHalal: true,
-        image: "images/combo_meal.png",
+        image: "images/combo_meal.webp",
         description: "2 Choice Shawarma Wraps (Chicken or Beef) + Large Portion Golden French Fries + 2 Dipping Sauces."
     },
     {
@@ -211,7 +211,7 @@ const MENU_ITEMS = [
         isSpicy: false,
         isSpecial: true,
         isHalal: true,
-        image: "images/shake.png",
+        image: "images/shake.webp",
         description: "Rich premium Belgian chocolate ice cream blended with fresh milk, whipped cream, and chocolate drizzle."
     },
     {
@@ -226,7 +226,7 @@ const MENU_ITEMS = [
         isSpicy: false,
         isSpecial: false,
         isHalal: true,
-        image: "images/shake.png",
+        image: "images/shake.webp",
         description: "Real sun-ripened strawberries blended smooth with vanilla ice cream and whipped topping."
     }
 ];
@@ -400,7 +400,7 @@ function renderMenu() {
     elements.menuGrid.innerHTML = filtered.map(item => `
         <div class="food-card">
             <div class="card-img-wrapper">
-                <img src="${item.image}" alt="${item.name}" class="card-img" loading="lazy">
+                <img src="${item.image}" alt="${item.name}" class="card-img" loading="lazy" decoding="async" width="600" height="400">
                 <span class="card-badge-tag">${item.badge}</span>
             </div>
             <div class="card-body">
