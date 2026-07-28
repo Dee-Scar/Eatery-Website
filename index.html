@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flame & Sizzle Bistro | Gourmet Grills, Shawarma & Loaded Fries</title>
+    <meta name="description" content="Order fresh flame-grilled BBQ, authentic shawarma wraps, loaded french fries, burgers, and gourmet milkshakes. Fast delivery to your doorstep!">
+    <meta name="keywords" content="eatery, shawarma, french fries, grills, bbq, burgers, food delivery, restaurant">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- CSS stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Top Announcement Ticker Bar -->
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            <span>🔥 <strong>FLAME DEAL:</strong> Get 10% OFF your first order with code <mark>FLAME10</mark></span>
+            <span class="dot">•</span>
+            <span>🚀 <strong>FREE DELIVERY</strong> on all orders over $30!</span>
+            <span class="dot">•</span>
+            <span>⏰ Open Today: 11:00 AM - 11:00 PM</span>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="site-header" id="header">
+        <div class="header-container">
+            <a href="#" class="brand-logo">
+                <span class="logo-icon">🔥</span>
+                <div class="logo-text">
+                    <span class="brand-name">FLAME & SIZZLE</span>
+                    <span class="brand-sub">Gourmet Grills & Eats</span>
+                </div>
+            </a>
+
+            <nav class="nav-links" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#deals" class="nav-link">Daily Deals</a>
+                <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="#location" class="nav-link">Location & Hours</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn search-toggle-btn" id="search-btn" aria-label="Toggle Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+
+                <button class="tracker-pill-btn" id="open-tracker-btn">
+                    <span class="pulse-dot"></span>
+                    <span class="pill-text">Order Status</span>
+                </button>
+
+                <button class="cart-btn" id="cart-toggle-btn" aria-label="View Shopping Cart">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="cart-label">Cart</span>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+
+                <button class="hamburger-menu" id="menu-hamburger" aria-label="Mobile Navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-backdrop"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-icon">⭐</span>
+                        <span>#1 Gourmet Grill & Shawarma Spot</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Smoky Flame Grills, <span class="text-highlight">Artisan Shawarma</span> & Loaded Fries
+                    </h1>
+                    <p class="hero-subtitle">
+                        Handcrafted with 100% fresh ingredients, secret spice rubs, and slow-roasted meats. Savor mouth-watering grills, crispy golden fries, and rich shakes delivered sizzling hot.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#menu" class="btn btn-primary btn-lg">
+                            <span>Explore Full Menu</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                        <a href="#deals" class="btn btn-secondary btn-lg">
+                            <span>🔥 View Today's Deals</span>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">4.9 ★</span>
+                            <span class="stat-label">15,000+ Reviews</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">25 Mins</span>
+                            <span class="stat-label">Avg. Delivery</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-label">Fresh Daily</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-card-floating">
+                        <div class="hero-image-wrapper">
+                            <img src="images/shawarma.png" alt="Signature Shawarma Wrap" class="hero-img">
+                            <span class="tag-hot">BESTSELLER</span>
+                        </div>
+                        <div class="hero-card-details">
+                            <h3>Supreme Beef & Chicken Shawarma</h3>
+                            <p>Toasted pita, garlic toum sauce, pickles & grilled meat</p>
+                            <div class="hero-card-footer">
+                                <span class="price">$9.99</span>
+                                <button class="btn btn-sm btn-primary quick-add-hero" data-id="shawarma-1">
+                                    + Add To Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Badges -->
+        <section class="features-bar">
+            <div class="features-container">
+                <div class="feature-item">
+                    <div class="feature-icon">🔥</div>
+                    <div>
+                        <h4>Charcoal Flame Grilled</h4>
+                        <p>Infused with natural hickory & spice rubs</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🥔</div>
+                    <div>
+                        <h4>Hand-Cut Loaded Fries</h4>
+                        <p>Crispy double-fried russet potatoes</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div>
+                        <h4>Sizzling Express Delivery</h4>
+                        <p>Insulated thermal tech keeps it piping hot</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🥙</div>
+                    <div>
+                        <h4>House-Made Sauces</h4>
+                        <p>Signature garlic toum, harissa & spicy mayo</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Deals & Special Offers Section -->
+        <section class="deals-section" id="deals">
+            <div class="section-header center">
+                <span class="section-tag">LIMITED TIME SPECIALS</span>
+                <h2>Sizzling Daily Deals</h2>
+                <p>Grab your favorite eatery combos before the timer runs out!</p>
+            </div>
+
+            <div class="deals-grid">
+                <div class="deal-card deal-main">
+                    <div class="deal-badge">SAVE 25%</div>
+                    <div class="deal-img-box">
+                        <img src="images/combo_meal.png" alt="Ultimate Grill Feast Combo">
+                    </div>
+                    <div class="deal-info">
+                        <div class="deal-timer-box">
+                            <span>Offer Ends In:</span>
+                            <div class="countdown-timer" id="deal-timer">04 : 28 : 15</div>
+                        </div>
+                        <h3>The Mega Grill & Shawarma Feast</h3>
+                        <p>Includes 1 Supreme Shawarma Wrap, Large Loaded Cheese Fries, 4 Flame BBQ Wings + 1 Chilled Milkshake.</p>
+                        <div class="deal-price-row">
+                            <span class="old-price">$28.50</span>
+                            <span class="new-price">$21.99</span>
+                            <button class="btn btn-primary add-deal-btn" data-id="combo-1">Order Deal Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deal-card deal-secondary">
+                    <div class="deal-badge">POPULAR</div>
+                    <div class="deal-img-box">
+                        <img src="images/french_fries.png" alt="Loaded Fries Supreme">
+                    </div>
+                    <div class="deal-info">
+                        <h3>Loaded Cheese & Jalapeño Fries</h3>
+                        <p>Double crisp fries smothered in warm melted cheddar, crispy bacon, & green onions.</p>
+                        <div class="deal-price-row">
+                            <span class="old-price">$10.50</span>
+                            <span class="new-price">$7.99</span>
+                            <button class="btn btn-primary add-deal-btn" data-id="fries-2">Add For $7.99</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Interactive Food Menu Section -->
+        <section class="menu-section" id="menu">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag">OUR FRESH MENU</span>
+                    <h2>Explore Our Delicious Eats</h2>
+                </div>
+                <div class="menu-search-wrapper">
+                    <input type="text" id="menu-search" placeholder="Search shawarma, fries, grills..." aria-label="Search menu">
+                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="category-filter-bar">
+                <button class="cat-pill active" data-category="all">
+                    <span class="cat-icon">🍽️</span> All Items
+                </button>
+                <button class="cat-pill" data-category="grills">
+                    <span class="cat-icon">🔥</span> Grills & BBQ
+                </button>
+                <button class="cat-pill" data-category="shawarma">
+                    <span class="cat-icon">🌯</span> Shawarma & Wraps
+                </button>
+                <button class="cat-pill" data-category="fries">
+                    <span class="cat-icon">🍟</span> Fries & Loaded Sides
+                </button>
+                <button class="cat-pill" data-category="burgers">
+                    <span class="cat-icon">🍔</span> Gourmet Burgers
+                </button>
+                <button class="cat-pill" data-category="combos">
+                    <span class="cat-icon">⚡</span> Combo Meals
+                </button>
+                <button class="cat-pill" data-category="drinks">
+                    <span class="cat-icon">🍹</span> Shakes & Drinks
+                </button>
+            </div>
+
+            <!-- Preference Checklist -->
+            <div class="preference-bar">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="filter-spicy">
+                    <span class="checkmark"></span>
+                    🌶️ Spicy Options
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" id="filter-special">
+                    <span class="checkmark"></span>
+                    ⭐ Chef's Specials
+                </label>
+            </div>
+
+            <!-- Food Grid Container -->
+            <div class="food-grid" id="menu-grid">
+                <!-- Dynamically Rendered via app.js -->
+            </div>
+        </section>
+
+        <!-- Customer Reviews & Feedback Section -->
+        <section class="reviews-section" id="reviews">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag">VOICE OF OUR FOODIES</span>
+                    <h2>Customer Reviews & Ratings</h2>
+                </div>
+                <button class="btn btn-secondary" id="open-review-modal-btn">
+                    <span>✍️ Write a Review</span>
+                </button>
+            </div>
+
+            <div class="reviews-container">
+                <div class="reviews-summary-card">
+                    <div class="big-score">4.9</div>
+                    <div class="stars-row">★★★★★</div>
+                    <p class="score-sub">Based on 1,480 verified online orders</p>
+                    <div class="score-breakdown">
+                        <div class="rating-bar-row">
+                            <span>5 Stars</span>
+                            <div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div>
+                            <span>88%</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span>4 Stars</span>
+                            <div class="bar-bg"><div class="bar-fill" style="width: 9%;"></div></div>
+                            <span>9%</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span>3 Stars</span>
+                            <div class="bar-bg"><div class="bar-fill" style="width: 2%;"></div></div>
+                            <span>2%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reviews-grid" id="reviews-grid">
+                    <!-- Dynamically Populated by app.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Location, Hours & Info Section -->
+        <section class="location-section" id="location">
+            <div class="location-container">
+                <div class="location-info">
+                    <span class="section-tag">FIND US HERE</span>
+                    <h2>Visit Our Eatery or Order Pickup</h2>
+                    <div class="status-indicator-box">
+                        <span class="pulse-dot green"></span>
+                        <div>
+                            <strong class="status-title">OPEN NOW</strong>
+                            <p>Taking orders for fast delivery & hot pickup</p>
+                        </div>
+                    </div>
+
+                    <ul class="info-list">
+                        <li>
+                            <span class="info-icon">📍</span>
+                            <div>
+                                <strong>Address</strong>
+                                <p>452 Flame Grill Blvd, Culinary District, NY 10012</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="info-icon">📞</span>
+                            <div>
+                                <strong>Phone & Hotline</strong>
+                                <p>+1 (800) 555-FLAME / (555) 749-9272</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="info-icon">⏰</span>
+                            <div>
+                                <strong>Opening Hours</strong>
+                                <p>Mon - Thu: 11:00 AM - 11:00 PM</p>
+                                <p>Fri - Sun: 11:00 AM - 1:00 AM (Late Night)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="map-card">
+                    <div class="map-placeholder">
+                        <div class="map-pin">📍</div>
+                        <h3>Flame & Sizzle Main Kitchen</h3>
+                        <p>Fast delivery within 10 miles radius!</p>
+                        <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Open in Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="brand-logo">
+                    <span class="logo-icon">🔥</span>
+                    <span class="brand-name">FLAME & SIZZLE</span>
+                </div>
+                <p>Bringing smoky flame-grilled meats, authentic spices, wrapped shawarmas, and double-fried crispy loaded fries straight to your plate.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525 2.015a.053.053 0 0 1 .053.054V7.5a.053.053 0 0 1-.053.053A5.44 5.44 0 0 1 7.08 2.115a.053.053 0 0 1 .053-.053h5.392zm5.72 4.148a.053.053 0 0 1 .054.053v1.892a.053.053 0 0 1-.072.05 6.07 6.07 0 0 1-2.91-1.332 6.046 6.046 0 0 1-1.688-2.617a.053.053 0 0 1 .05-.067h2.528a.053.053 0 0 1 .052.04 3.518 3.518 0 0 0 1.986 2.031zM12.525 9.062a.053.053 0 0 1 .053.053v9.06a3.616 3.616 0 1 1-3.615-3.616c.487 0 .95.097 1.373.272a.053.053 0 0 1 .032.049v2.247a.053.053 0 0 1-.073.048 1.408 1.408 0 1 0 .914 1.317V9.115a.053.053 0 0 1 .053-.053h1.263z"/></svg>
+                    </a>
+                    <a href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#deals">Sizzling Deals</a></li>
+                    <li><a href="#reviews">Customer Reviews</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Eatery Menu</h4>
+                <ul>
+                    <li><a href="#menu">Flame BBQ Ribs & Suya</a></li>
+                    <li><a href="#menu">Chicken & Beef Shawarma</a></li>
+                    <li><a href="#menu">Loaded Cheese French Fries</a></li>
+                    <li><a href="#menu">Gourmet Bacon Burgers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col newsletter-col">
+                <h4>Subscribe For VIP Perks</h4>
+                <p>Get exclusive discount codes and secret menu drops!</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Enter your email..." required aria-label="Email address">
+                    <button type="submit" class="btn btn-primary">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Flame & Sizzle Bistro. All rights reserved. | <strong>Designed by Dee-Scar(Oscar Wealth)</strong></p>
+        </div>
+    </footer>
+
+    <!-- ================= MODALS & DRAWERS ================= -->
+
+    <!-- Item Customizer Modal -->
+    <div class="modal-overlay" id="customizer-modal-overlay">
+        <div class="modal-card customizer-modal">
+            <button class="modal-close-btn" id="close-customizer-btn" aria-label="Close modal">&times;</button>
+            
+            <div class="customizer-header">
+                <img id="custom-item-img" src="" alt="Food Item">
+                <div class="customizer-title-box">
+                    <h3 id="custom-item-name">Food Name</h3>
+                    <p id="custom-item-desc">Description</p>
+                    <div class="meta-row">
+                        <span id="custom-item-cal" class="meta-badge">🔥 450 kcal</span>
+                        <span id="custom-item-prep" class="meta-badge">⏱️ 15 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="customizer-body">
+                <!-- Size Options -->
+                <div class="options-group">
+                    <label class="group-title">1. Choose Portion Size</label>
+                    <div class="radio-options" id="size-options-container">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Sauce Options -->
+                <div class="options-group">
+                    <label class="group-title">2. Select Your Sauces (Complimentary)</label>
+                    <div class="checkbox-options" id="sauce-options-container">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Extra Add-ons -->
+                <div class="options-group">
+                    <label class="group-title">3. Extra Delicious Add-Ons</label>
+                    <div class="checkbox-options" id="addons-options-container">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Special Notes -->
+                <div class="options-group">
+                    <label class="group-title">4. Special Instructions</label>
+                    <textarea id="custom-notes" placeholder="e.g. Extra garlic sauce on the side, no onions, extra crispy fries..."></textarea>
+                </div>
+            </div>
+
+            <div class="customizer-footer">
+                <div class="quantity-picker">
+                    <button id="qty-minus" aria-label="Decrease quantity">-</button>
+                    <span id="custom-qty">1</span>
+                    <button id="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button class="btn btn-primary btn-block" id="add-to-cart-confirm-btn">
+                    <span>Add To Cart</span> — <strong id="custom-calculated-price">$0.00</strong>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide-Out Shopping Cart Drawer -->
+    <div class="drawer-overlay" id="cart-drawer-overlay">
+        <div class="cart-drawer" id="cart-drawer-card">
+            <div class="drawer-header">
+                <h3>Your Order Cart</h3>
+                <button class="drawer-close-btn" id="close-cart-btn" aria-label="Close cart">&times;</button>
+            </div>
+
+            <div class="cart-items-wrapper" id="cart-items-container">
+                <!-- Cart Items Rendered Here -->
+            </div>
+
+            <div class="cart-drawer-footer">
+                <!-- Promo Code -->
+                <div class="promo-box">
+                    <input type="text" id="promo-input" placeholder="Promo code (e.g. FLAME10)" aria-label="Promo code">
+                    <button id="apply-promo-btn" class="btn btn-secondary btn-sm">Apply</button>
+                </div>
+                <div id="promo-status-msg"></div>
+
+                <!-- Pricing Summary -->
+                <div class="financial-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row discount-row" id="discount-row" style="display: none;">
+                        <span>Discount (<span id="discount-percent">0%</span>)</span>
+                        <span id="cart-discount">-$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Est. Tax (8%)</span>
+                        <span id="cart-tax">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span id="cart-delivery">$3.99</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Grand Total</span>
+                        <span id="cart-grand-total">$0.00</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-block btn-lg" id="proceed-checkout-btn">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal-overlay">
+        <div class="modal-card checkout-modal">
+            <button class="modal-close-btn" id="close-checkout-btn" aria-label="Close checkout">&times;</button>
+            <h2>Express Checkout</h2>
+            <p class="checkout-sub">Complete your details to place your fresh order.</p>
+
+            <form id="checkout-form">
+                <!-- Service Type -->
+                <div class="form-group">
+                    <label class="form-label">Order Type</label>
+                    <div class="toggle-switch-container">
+                        <button type="button" class="toggle-option active" data-type="delivery">🛵 Door Delivery</button>
+                        <button type="button" class="toggle-option" data-type="pickup">🏃 Restaurant Pickup</button>
+                    </div>
+                </div>
+
+                <!-- Customer Details -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cust-name">Full Name *</label>
+                        <input type="text" id="cust-name" required placeholder="Alex Johnson">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-phone">Phone Number *</label>
+                        <input type="tel" id="cust-phone" required placeholder="(555) 019-2831">
+                    </div>
+                </div>
+
+                <div class="form-group" id="address-group">
+                    <label for="cust-address">Delivery Address *</label>
+                    <input type="text" id="cust-address" required placeholder="123 Main St, Apt 4B">
+                </div>
+
+                <!-- Payment Selection -->
+                <div class="form-group">
+                    <label class="form-label">Payment Method</label>
+                    <div class="payment-methods-grid">
+                        <label class="pay-card active">
+                            <input type="radio" name="payment-method" value="card" checked>
+                            <span>💳 Credit / Debit Card</span>
+                        </label>
+                        <label class="pay-card">
+                            <input type="radio" name="payment-method" value="cod">
+                            <span>💵 Cash on Delivery</span>
+                        </label>
+                        <label class="pay-card">
+                            <input type="radio" name="payment-method" value="transfer">
+                            <span>📱 Mobile Transfer</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Order Final Total -->
+                <div class="checkout-total-box">
+                    <span>Total Payment Due:</span>
+                    <strong id="checkout-final-total">$0.00</strong>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-order-btn">
+                    🔒 Place & Confirm Order
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Receipt / Order Confirmation Modal -->
+    <div class="modal-overlay" id="receipt-modal-overlay">
+        <div class="modal-card receipt-modal">
+            <div class="success-icon-wrap">
+                <div class="checkmark-circle">✔</div>
+            </div>
+            <h2>Order Placed Successfully!</h2>
+            <p class="receipt-sub">Thank you for ordering with Flame & Sizzle. Our chef is firing up the grill!</p>
+
+            <div class="receipt-ticket">
+                <div class="ticket-header">
+                    <span>ORDER NO: <strong id="receipt-order-id">#FS-98412</strong></span>
+                    <span id="receipt-timestamp">Today, 9:42 PM</span>
+                </div>
+                <div class="receipt-customer-details" id="receipt-customer-info">
+                    <!-- Populated dynamically -->
+                </div>
+                <hr>
+                <div class="receipt-items-list" id="receipt-items-list">
+                    <!-- Populated dynamically -->
+                </div>
+                <hr>
+                <div class="receipt-summary-lines" id="receipt-totals-lines">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <div class="receipt-actions">
+                <button class="btn btn-primary btn-block" id="view-order-tracker-btn">
+                    🚴 Track Order Live
+                </button>
+                <button class="btn btn-secondary btn-block" id="print-receipt-btn">
+                    🖨️ Print Receipt
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Order Tracker Modal -->
+    <div class="modal-overlay" id="tracker-modal-overlay">
+        <div class="modal-card tracker-modal">
+            <button class="modal-close-btn" id="close-tracker-btn" aria-label="Close tracker">&times;</button>
+            <div class="tracker-header">
+                <h2>Live Order Tracking</h2>
+                <p id="tracker-order-num">Order #FS-98412</p>
+            </div>
+
+            <div class="delivery-eta-box">
+                <span class="eta-title">Estimated Delivery Time</span>
+                <span class="eta-time" id="eta-countdown">22 Mins</span>
+                <p class="eta-sub" id="eta-sub-status">Your order is being sizzling grilled in kitchen!</p>
+            </div>
+
+            <!-- Step Progress Timeline -->
+            <div class="progress-timeline">
+                <div class="timeline-step step-done" id="step-1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Order Received</div>
+                </div>
+                <div class="timeline-line active" id="line-1"></div>
+                <div class="timeline-step step-active" id="step-2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Preparing</div>
+                </div>
+                <div class="timeline-line" id="line-2"></div>
+                <div class="timeline-step" id="step-3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">On The Way</div>
+                </div>
+                <div class="timeline-line" id="line-3"></div>
+                <div class="timeline-step" id="step-4">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Delivered</div>
+                </div>
+            </div>
+
+            <!-- Driver Info Card -->
+            <div class="driver-card">
+                <div class="driver-avatar">👨‍✈️</div>
+                <div class="driver-info">
+                    <h4>Marcus Vance</h4>
+                    <p>Express Courier • Black Scooter (NY-784)</p>
+                    <span class="driver-rating">★ 4.98 (2,100 deliveries)</span>
+                </div>
+                <button class="btn btn-outline btn-sm call-driver-btn" onclick="alert('Connecting call to courier Marcus Vance...')">
+                    📞 Call Courier
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal-overlay" id="review-modal-overlay">
+        <div class="modal-card review-modal">
+            <button class="modal-close-btn" id="close-review-btn" aria-label="Close modal">&times;</button>
+            <h2>Write a Customer Review</h2>
+            <p class="modal-sub">How was your Flame & Sizzle experience?</p>
+
+            <form id="write-review-form">
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="star-rating-select" id="star-picker">
+                        <span data-rating="1">★</span>
+                        <span data-rating="2">★</span>
+                        <span data-rating="3">★</span>
+                        <span data-rating="4">★</span>
+                        <span data-rating="5" class="active">★</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rev-name">Your Name</label>
+                    <input type="text" id="rev-name" required placeholder="e.g. Sarah M.">
+                </div>
+
+                <div class="form-group">
+                    <label for="rev-tag">Favorite Food Ordered</label>
+                    <select id="rev-tag">
+                        <option value="Shawarma Wrap">Beef/Chicken Shawarma</option>
+                        <option value="Loaded Fries">Loaded French Fries</option>
+                        <option value="BBQ Ribs">Flame Grilled BBQ Ribs</option>
+                        <option value="Gourmet Burger">Bacon Cheeseburger</option>
+                        <option value="Combo Feast">Mega Combo Meal</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="rev-comment">Review Details</label>
+                    <textarea id="rev-comment" required placeholder="Tell us about the flavor, crispiness, sauce, and delivery fastness!"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- JS Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>
