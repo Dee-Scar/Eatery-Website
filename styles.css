@@ -2146,84 +2146,136 @@ img {
     color: var(--text-primary);
 }
 
-/* Timeline progress */
-.progress-timeline {
+/* Expandable Desktop Navbar Search */
+.nav-search-container {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin: 30px 0;
+    align-items: center;
     position: relative;
+}
+
+.nav-search-input {
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--dark-surface);
+    color: #FFF;
+    border-radius: var(--radius-full);
+    font-size: 0.88rem;
+    outline: none;
+    pointer-events: none;
+}
+
+.nav-search-container.active .nav-search-input {
+    width: 200px;
+    opacity: 1;
+    padding: 8px 14px 8px 36px;
+    border: 1px solid var(--primary);
+    pointer-events: auto;
+}
+
+.nav-search-container.active .search-toggle-btn {
+    position: absolute;
+    left: 4px;
+    z-index: 2;
+    background: transparent;
+    border: none;
+}
+
+/* Graphical Live Order Tracker Progress Bar Widget */
+.tracker-progress-wrapper {
+    position: relative;
+    margin: 32px 0 28px;
+    padding: 0 10px;
     width: 100%;
 }
 
-.timeline-step {
+.tracker-progress-bar-bg {
+    position: absolute;
+    top: 22px;
+    left: 40px;
+    right: 40px;
+    height: 6px;
+    background: var(--dark-border);
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.tracker-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00E676 0%, var(--primary) 100%);
+    border-radius: 3px;
+    transition: width 0.5s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 230, 118, 0.5);
+}
+
+.tracker-steps-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.tracker-step {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    z-index: 2;
-    flex-shrink: 0;
-    width: 70px;
+    gap: 8px;
+    flex: 1;
     text-align: center;
 }
 
-.step-circle {
-    width: 32px;
-    height: 32px;
+.tracker-node {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: var(--dark-surface);
     border: 2px solid var(--dark-border);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.tracker-step.step-done .tracker-node {
+    background: #00E676;
+    border-color: #00E676;
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+}
+
+.tracker-step.step-active .tracker-node {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #FFF;
+    box-shadow: 0 0 20px rgba(255, 87, 34, 0.7);
+    animation: pulseNode 1.5s infinite alternate;
+}
+
+@keyframes pulseNode {
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 87, 34, 0.5); }
+    100% { transform: scale(1.12); box-shadow: 0 0 22px rgba(255, 87, 34, 0.9); }
+}
+
+.tracker-node-label {
+    font-size: 0.78rem;
     font-weight: 700;
-    font-size: 0.85rem;
     color: var(--text-muted);
     transition: var(--transition-fast);
 }
 
-.timeline-step.step-done .step-circle {
-    background: #00E676;
-    border-color: #00E676;
-    color: #000;
-}
-
-.timeline-step.step-active .step-circle {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: #FFF;
-    box-shadow: 0 0 12px var(--primary);
-}
-
-.step-label {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    font-weight: 600;
-    text-align: center;
-    white-space: normal;
-    word-wrap: break-word;
-    width: 75px;
-}
-
-.timeline-step.step-active .step-label {
-    color: var(--primary);
-}
-
-.timeline-step.step-done .step-label {
+.tracker-step.step-done .tracker-node-label {
     color: #00E676;
 }
 
-.timeline-line {
-    height: 4px;
-    background: var(--dark-border);
-    flex-grow: 1;
-    z-index: 1;
-    margin-top: 14px; /* Align to the center of the 32px circles */
-    min-width: 12px;
-}
-
-.timeline-line.active {
-    background: #00E676;
+.tracker-step.step-active .tracker-node-label {
+    color: var(--primary);
 }
 
 /* Driver Card */
@@ -2289,7 +2341,7 @@ img {
         padding-top: 14px !important;
         margin-top: 6px;
     }
-    #search-btn {
+    #nav-search-container {
         display: none !important;
     }
 }

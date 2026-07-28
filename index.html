@@ -51,9 +51,13 @@
             </nav>
 
             <div class="header-actions">
-                <button class="icon-btn search-toggle-btn" id="search-btn" aria-label="Toggle Search">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                </button>
+                <!-- Expandable Desktop Search -->
+                <div class="nav-search-container" id="nav-search-container">
+                    <button class="icon-btn search-toggle-btn" id="search-btn" aria-label="Toggle Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </button>
+                    <input type="text" id="nav-search-input" class="nav-search-input" placeholder="Search menu..." aria-label="Search menu from navbar">
+                </div>
 
                 <button class="tracker-pill-btn" id="open-tracker-btn">
                     <span class="pulse-dot"></span>
@@ -665,26 +669,36 @@
                 <p class="eta-sub" id="eta-sub-status">Your order is being sizzling grilled in kitchen!</p>
             </div>
 
-            <!-- Step Progress Timeline -->
-            <div class="progress-timeline">
-                <div class="timeline-step step-done" id="step-1">
-                    <div class="step-circle">1</div>
-                    <div class="step-label">Order Received</div>
+            <!-- Graphical Step Progress Timeline Widget -->
+            <div class="tracker-progress-wrapper">
+                <div class="tracker-progress-bar-bg">
+                    <div class="tracker-progress-bar-fill" id="tracker-bar-fill" style="width: 33%;"></div>
                 </div>
-                <div class="timeline-line active" id="line-1"></div>
-                <div class="timeline-step step-active" id="step-2">
-                    <div class="step-circle">2</div>
-                    <div class="step-label">Preparing</div>
-                </div>
-                <div class="timeline-line" id="line-2"></div>
-                <div class="timeline-step" id="step-3">
-                    <div class="step-circle">3</div>
-                    <div class="step-label">On The Way</div>
-                </div>
-                <div class="timeline-line" id="line-3"></div>
-                <div class="timeline-step" id="step-4">
-                    <div class="step-circle">4</div>
-                    <div class="step-label">Delivered</div>
+                <div class="tracker-steps-container">
+                    <div class="tracker-step step-done" id="step-1">
+                        <div class="tracker-node">
+                            <span class="node-icon">📝</span>
+                        </div>
+                        <div class="tracker-node-label">Received</div>
+                    </div>
+                    <div class="tracker-step step-active" id="step-2">
+                        <div class="tracker-node">
+                            <span class="node-icon">👨‍🍳</span>
+                        </div>
+                        <div class="tracker-node-label">Kitchen</div>
+                    </div>
+                    <div class="tracker-step" id="step-3">
+                        <div class="tracker-node">
+                            <span class="node-icon">🛵</span>
+                        </div>
+                        <div class="tracker-node-label">Out for Delivery</div>
+                    </div>
+                    <div class="tracker-step" id="step-4">
+                        <div class="tracker-node">
+                            <span class="node-icon">🎉</span>
+                        </div>
+                        <div class="tracker-node-label">Delivered</div>
+                    </div>
                 </div>
             </div>
 

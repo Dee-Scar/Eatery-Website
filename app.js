@@ -732,34 +732,44 @@ function setupEventListeners() {
 
     // Search Triggers & Focus Logic
     const searchBtn = document.getElementById("search-btn");
+    const navSearchContainer = document.getElementById("nav-search-container");
+    const navSearchInput = document.getElementById("nav-search-input");
     const mobileSearchBtn = document.getElementById("mobile-search-btn");
 
-    function focusMenuSearch() {
-        setTimeout(() => {
-            if (elements.menuSearch) {
-                elements.menuSearch.focus();
-                elements.menuSearch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (searchBtn && navSearchContainer) {
+        searchBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            navSearchContainer.classList.toggle("active");
+            if (navSearchContainer.classList.contains("active") && navSearchInput) {
+                navSearchInput.focus();
             }
-        }, 100);
+        });
     }
 
-    if (searchBtn) {
-        searchBtn.addEventListener("click", focusMenuSearch);
+    if (navSearchInput) {
+        navSearchInput.addEventListener("input", (e) => {
+            state.searchQuery = e.target.value;
+            if (elements.menuSearch) elements.menuSearch.value = e.target.value;
+            renderMenu();
+        });
     }
 
     if (mobileSearchBtn) {
         mobileSearchBtn.addEventListener("click", () => {
-            // Close mobile menu
             if (hamburger && navMenu) {
                 hamburger.classList.remove("active");
                 navMenu.classList.remove("active");
             }
-            focusMenuSearch();
+            if (elements.menuSearch) {
+                elements.menuSearch.focus();
+                elements.menuSearch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         });
     }
 
     elements.menuSearch.addEventListener("input", (e) => {
         state.searchQuery = e.target.value;
+        if (navSearchInput) navSearchInput.value = e.target.value;
         renderMenu();
     });
 
@@ -1057,19 +1067,22 @@ function updateTrackerUI(activeStep, etaText, subMsg) {
     elements.etaCountdown.textContent = etaText;
     elements.etaSubStatus.textContent = subMsg;
 
+    const barFill = document.getElementById("tracker-bar-fill");
+    if (barFill) {
+        const percentages = { 1: "0%", 2: "33%", 3: "66%", 4: "100%" };
+        barFill.style.width = percentages[activeStep] || "33%";
+    }
+
     for (let i = 1; i <= 4; i++) {
         const stepEl = document.getElementById(`step-${i}`);
-        const lineEl = document.getElementById(`line-${i}`);
-
-        if (i < activeStep) {
-            stepEl.className = "timeline-step step-done";
-            if (lineEl) lineEl.className = "timeline-line active";
-        } else if (i === activeStep) {
-            stepEl.className = "timeline-step step-active";
-            if (lineEl) lineEl.className = "timeline-line";
-        } else {
-            stepEl.className = "timeline-step";
-            if (lineEl) lineEl.className = "timeline-line";
+        if (stepEl) {
+            if (i < activeStep) {
+                stepEl.className = "tracker-step step-done";
+            } else if (i === activeStep) {
+                stepEl.className = "tracker-step step-active";
+            } else {
+                stepEl.className = "tracker-step";
+            }
         }
     }
 }
