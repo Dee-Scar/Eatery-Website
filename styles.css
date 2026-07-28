@@ -2146,43 +2146,6 @@ img {
     color: var(--text-primary);
 }
 
-/* Expandable Desktop Navbar Search */
-.nav-search-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.nav-search-input {
-    width: 0;
-    opacity: 0;
-    padding: 0;
-    border: none;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    background: var(--dark-surface);
-    color: #FFF;
-    border-radius: var(--radius-full);
-    font-size: 0.88rem;
-    outline: none;
-    pointer-events: none;
-}
-
-.nav-search-container.active .nav-search-input {
-    width: 200px;
-    opacity: 1;
-    padding: 8px 14px 8px 36px;
-    border: 1px solid var(--primary);
-    pointer-events: auto;
-}
-
-.nav-search-container.active .search-toggle-btn {
-    position: absolute;
-    left: 4px;
-    z-index: 2;
-    background: transparent;
-    border: none;
-}
-
 /* Graphical Live Order Tracker Progress Bar Widget */
 .tracker-progress-wrapper {
     position: relative;
@@ -2325,23 +2288,4 @@ img {
     font-weight: 600;
 }
 
-.mobile-only-search {
-    display: none !important;
-}
-
-@media (max-width: 768px) {
-    .mobile-only-search {
-        display: flex !important;
-        align-items: center;
-        gap: 8px;
-        color: var(--secondary) !important;
-        font-weight: 700 !important;
-        border-top: 1px solid var(--dark-border);
-        width: 100%;
-        padding-top: 14px !important;
-        margin-top: 6px;
-    }
-    #nav-search-container {
-        display: none !important;
-    }
 }

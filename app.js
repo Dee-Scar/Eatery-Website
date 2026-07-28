@@ -259,12 +259,11 @@ const INITIAL_REVIEWS = [
     }
 ];
 
-// --- 3. APPLICATION STATE ---
-let state = {
+// --- 3. GLOBAL APPLICATION STATE ---
+const state = {
     cart: [],
     appliedPromo: null,
     activeCategory: "all",
-    searchQuery: "",
     filterSpicy: false,
     filterSpecial: false,
     filterHalal: true,
@@ -378,13 +377,6 @@ function renderMenu() {
         // Category filter
         if (state.activeCategory !== "all" && item.category !== state.activeCategory) {
             return false;
-        }
-        // Search query filter
-        if (state.searchQuery) {
-            const query = state.searchQuery.toLowerCase();
-            const matchName = item.name.toLowerCase().includes(query);
-            const matchDesc = item.description.toLowerCase().includes(query);
-            if (!matchName && !matchDesc) return false;
         }
         // Checkbox filters
         if (state.filterSpicy && !item.isSpicy) return false;
@@ -728,49 +720,6 @@ function setupEventListeners() {
             state.activeCategory = pill.dataset.category;
             renderMenu();
         });
-    });
-
-    // Search Triggers & Focus Logic
-    const searchBtn = document.getElementById("search-btn");
-    const navSearchContainer = document.getElementById("nav-search-container");
-    const navSearchInput = document.getElementById("nav-search-input");
-    const mobileSearchBtn = document.getElementById("mobile-search-btn");
-
-    if (searchBtn && navSearchContainer) {
-        searchBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            navSearchContainer.classList.toggle("active");
-            if (navSearchContainer.classList.contains("active") && navSearchInput) {
-                navSearchInput.focus();
-            }
-        });
-    }
-
-    if (navSearchInput) {
-        navSearchInput.addEventListener("input", (e) => {
-            state.searchQuery = e.target.value;
-            if (elements.menuSearch) elements.menuSearch.value = e.target.value;
-            renderMenu();
-        });
-    }
-
-    if (mobileSearchBtn) {
-        mobileSearchBtn.addEventListener("click", () => {
-            if (hamburger && navMenu) {
-                hamburger.classList.remove("active");
-                navMenu.classList.remove("active");
-            }
-            if (elements.menuSearch) {
-                elements.menuSearch.focus();
-                elements.menuSearch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
-    }
-
-    elements.menuSearch.addEventListener("input", (e) => {
-        state.searchQuery = e.target.value;
-        if (navSearchInput) navSearchInput.value = e.target.value;
-        renderMenu();
     });
 
     // Checkboxes
