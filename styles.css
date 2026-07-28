@@ -337,10 +337,17 @@ img {
     font-weight: 600;
     transition: var(--transition-fast);
     white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tracker-pill-btn * {
+    pointer-events: none;
 }
 
 .tracker-pill-btn:hover {
-    background: rgba(0, 230, 118, 0.2);
+    background: rgba(0, 230, 118, 0.25);
+    transform: translateY(-1px);
 }
 
 .pulse-dot {
@@ -1948,11 +1955,20 @@ img {
     .hamburger-menu.active span:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -5px);
     }
-    .tracker-pill-btn .pill-text {
-        display: none;
-    }
     .tracker-pill-btn {
-        padding: 6px 10px;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    .mobile-tracker-link {
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+        color: #00E676 !important;
+        font-weight: 700 !important;
+        border-top: 1px solid var(--dark-border);
+        width: 100%;
+        padding-top: 14px !important;
+        margin-top: 6px;
     }
     .cart-label {
         display: none;

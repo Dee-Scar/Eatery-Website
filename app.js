@@ -927,10 +927,30 @@ function setupEventListeners() {
     });
 
     // Tracker Modal Toggle
-    elements.openTrackerBtn.addEventListener("click", openTrackerModal);
-    elements.closeTrackerBtn.addEventListener("click", () => {
-        elements.trackerOverlay.classList.remove("active");
-    });
+    const mobileTrackerMenuBtn = document.getElementById("mobile-tracker-menu-btn");
+    if (mobileTrackerMenuBtn) {
+        mobileTrackerMenuBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (elements.hamburger && elements.navMenu) {
+                elements.hamburger.classList.remove("active");
+                elements.navMenu.classList.remove("active");
+            }
+            openTrackerModal();
+        });
+    }
+
+    if (elements.openTrackerBtn) {
+        elements.openTrackerBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openTrackerModal();
+        });
+    }
+
+    if (elements.closeTrackerBtn) {
+        elements.closeTrackerBtn.addEventListener("click", () => {
+            elements.trackerOverlay.classList.remove("active");
+        });
+    }
 
     // Reviews Modal
     elements.openReviewModalBtn.addEventListener("click", () => {
