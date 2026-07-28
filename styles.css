@@ -2241,6 +2241,22 @@ img {
     color: var(--primary);
 }
 
+@media (max-width: 480px) {
+    .tracker-progress-bar-bg {
+        left: 25px;
+        right: 25px;
+        top: 18px;
+    }
+    .tracker-node {
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
+    }
+    .tracker-node-label {
+        font-size: 0.65rem;
+    }
+}
+
 /* Driver Card */
 .driver-card {
     display: flex;
