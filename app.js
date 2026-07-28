@@ -730,9 +730,19 @@ function setupEventListeners() {
         });
     });
 
-    // Search input
+    // Search input & Mobile search input
+    const mobileSearch = document.getElementById("mobile-search");
+    if (mobileSearch) {
+        mobileSearch.addEventListener("input", (e) => {
+            state.searchQuery = e.target.value;
+            if (elements.menuSearch) elements.menuSearch.value = e.target.value;
+            renderMenu();
+        });
+    }
+
     elements.menuSearch.addEventListener("input", (e) => {
         state.searchQuery = e.target.value;
+        if (mobileSearch) mobileSearch.value = e.target.value;
         renderMenu();
     });
 

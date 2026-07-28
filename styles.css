@@ -2019,3 +2019,285 @@ img {
         padding: 16px 12px;
     }
 }
+
+/* ==========================================================================
+   ORDER CONFIRMATION & RECEIPT TICKET STYLING
+   ========================================================================== */
+.success-icon-wrap {
+    margin: 0 auto 16px;
+    width: 64px;
+    height: 64px;
+    background: rgba(0, 230, 118, 0.15);
+    border: 2px solid #00E676;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkmark-circle {
+    font-size: 1.8rem;
+    color: #00E676;
+    font-weight: bold;
+}
+
+.receipt-modal {
+    text-align: center;
+}
+
+.receipt-ticket {
+    background: var(--dark-surface);
+    border: 1px dashed var(--dark-border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin: 18px 0;
+    text-align: left;
+    font-size: 0.88rem;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.receipt-customer-details {
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.receipt-items-list {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.receipt-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.receipt-summary-lines {
+    margin-top: 10px;
+}
+
+.receipt-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ==========================================================================
+   STAR RATING SELECTION STYLING
+   ========================================================================== */
+.star-rating-select {
+    display: flex;
+    gap: 8px;
+    font-size: 1.8rem;
+    color: var(--dark-border);
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+.star-rating-select span {
+    transition: var(--transition-fast);
+}
+
+.star-rating-select span.active, .star-rating-select span:hover {
+    color: var(--secondary);
+}
+
+/* ==========================================================================
+   LIVE ORDER TRACKER TIMELINE STYLING
+   ========================================================================== */
+.delivery-eta-box {
+    background: linear-gradient(135deg, rgba(255, 87, 34, 0.15) 0%, rgba(255, 179, 0, 0.15) 100%);
+    border: 1px solid rgba(255, 87, 34, 0.3);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.eta-title {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.eta-time {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1.2;
+    margin: 6px 0;
+    display: block;
+}
+
+.eta-sub {
+    font-size: 0.88rem;
+    color: var(--text-primary);
+}
+
+/* Timeline progress */
+.progress-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px 0;
+    position: relative;
+    width: 100%;
+}
+
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+    flex: 1;
+    text-align: center;
+}
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--dark-surface);
+    border: 2px solid var(--dark-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+}
+
+.timeline-step.step-done .step-circle {
+    background: #00E676;
+    border-color: #00E676;
+    color: #000;
+}
+
+.timeline-step.step-active .step-circle {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #FFF;
+    box-shadow: 0 0 12px var(--primary);
+}
+
+.step-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.timeline-step.step-active .step-label {
+    color: var(--primary);
+}
+
+.timeline-step.step-done .step-label {
+    color: #00E676;
+}
+
+.timeline-line {
+    height: 3px;
+    background: var(--dark-border);
+    flex-grow: 1;
+    position: relative;
+    top: -19px;
+    z-index: 1;
+}
+
+.timeline-line.active {
+    background: #00E676;
+}
+
+/* Driver Card */
+.driver-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    padding: 14px;
+    border-radius: var(--radius-md);
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.driver-avatar {
+    font-size: 1.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.driver-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.driver-info h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.driver-info p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.driver-rating {
+    font-size: 0.75rem;
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   MOBILE HEADER SEARCH RESPONSIVENESS
+   ========================================================================== */
+.nav-search-mobile {
+    width: 100%;
+    margin-top: 10px;
+    display: none;
+}
+
+.nav-search-mobile input {
+    width: 100%;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    color: #FFF;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    font-size: 0.88rem;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.nav-search-mobile input:focus {
+    border-color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .nav-search-mobile {
+        display: block;
+    }
+    #search-btn {
+        display: none;
+    }
+}
