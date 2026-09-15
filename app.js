@@ -1,237 +1,55 @@
-/* ==========================================================================
-   FLAME & SIZZLE BISTRO - FULL APPLICATION LOGIC
-   ========================================================================== */
+// --- 1. CONTENT FROM THE SHARED STORE (see data.js / admin panel) ---
+const content = window.FlameData.load();
 
-// --- 1. FOOD MENU CATALOG DATA ---
-const MENU_ITEMS = [
-    {
-        id: "shawarma-1",
-        name: "Supreme Beef & Chicken Shawarma",
-        category: "shawarma",
-        price: 9.99,
-        calories: 580,
-        prepTime: "12 mins",
-        rating: "4.9 ★",
-        badge: "BESTSELLER",
-        isSpicy: true,
-        isSpecial: true,
-        isHalal: true,
-        image: "images/shawarma.webp",
-        description: "Thinly shaved flame-roasted beef & tender chicken wrapped in warm toasted pita with garlic toum, pickles, and crisp veggies."
-    },
-    {
-        id: "shawarma-2",
-        name: "Spicy Harissa Chicken Shawarma Wrap",
-        category: "shawarma",
-        price: 8.99,
-        calories: 520,
-        prepTime: "10 mins",
-        rating: "4.8 ★",
-        badge: "HOT & SPICY",
-        isSpicy: true,
-        isSpecial: false,
-        isHalal: true,
-        image: "images/shawarma.webp",
-        description: "Spicy marinated chicken shawarma with red harissa sauce, jalapeños, cabbage, and homemade garlic mayo."
-    },
-    {
-        id: "shawarma-3",
-        name: "Cheesy Lamb & Beef Shawarma Melt",
-        category: "shawarma",
-        price: 11.50,
-        calories: 640,
-        prepTime: "15 mins",
-        rating: "4.9 ★",
-        badge: "CHEF'S PICK",
-        isSpicy: false,
-        isSpecial: true,
-        isHalal: true,
-        image: "images/shawarma.webp",
-        description: "Slow-roasted spiced lamb & beef with melted cheddar cheese blend, tahini sauce, and caramelized onions."
-    },
-    {
-        id: "fries-1",
-        name: "Supreme Loaded Cheese & Bacon Fries",
-        category: "fries",
-        price: 8.99,
-        calories: 620,
-        prepTime: "8 mins",
-        rating: "4.9 ★",
-        badge: "POPULAR",
-        isSpicy: false,
-        isSpecial: true,
-        isHalal: false,
-        image: "images/french_fries.webp",
-        description: "Hand-cut crispy double-fried russet potatoes smothered in warm cheddar sauce, bacon bits, and chopped chives."
-    },
-    {
-        id: "fries-2",
-        name: "Loaded Cheese & Jalapeño Fries",
-        category: "fries",
-        price: 7.99,
-        calories: 560,
-        prepTime: "8 mins",
-        rating: "4.8 ★",
-        badge: "DAILY DEAL",
-        isSpicy: true,
-        isSpecial: false,
-        isHalal: true,
-        image: "images/french_fries.webp",
-        description: "Golden crispy fries drenched in rich cheese sauce, spicy pickled jalapeños, and smoky chipotle mayo."
-    },
-    {
-        id: "fries-3",
-        name: "Garlic Parmesan & Herb Seasoned Fries",
-        category: "fries",
-        price: 5.49,
-        calories: 410,
-        prepTime: "6 mins",
-        rating: "4.7 ★",
-        badge: "VEGGIE",
-        isSpicy: false,
-        isSpecial: false,
-        isHalal: true,
-        image: "images/french_fries.webp",
-        description: "Crispy french fries tossed in roasted garlic oil, aged parmesan cheese, rosemary, and parsley."
-    },
-    {
-        id: "grill-1",
-        name: "Smoky Charcoal BBQ Ribs & Suya Platter",
-        category: "grills",
-        price: 18.99,
-        calories: 890,
-        prepTime: "20 mins",
-        rating: "5.0 ★",
-        badge: "BESTSELLER",
-        isSpicy: true,
-        isSpecial: true,
-        isHalal: true,
-        image: "images/bbq_grill.webp",
-        description: "Flame-grilled hickory smoked ribs and suya spiced beef skewers served with grilled corn and signature dip."
-    },
-    {
-        id: "grill-2",
-        name: "Flame-Grilled Spicy Suya Chicken Skewers",
-        category: "grills",
-        price: 14.50,
-        calories: 610,
-        prepTime: "16 mins",
-        rating: "4.9 ★",
-        badge: "SPICY FAV",
-        isSpicy: true,
-        isSpecial: true,
-        isHalal: true,
-        image: "images/bbq_grill.webp",
-        description: "Tender chicken thighs dusted in authentic West African peanut suya spice and grilled over white-hot charcoal."
-    },
-    {
-        id: "grill-3",
-        name: "Charcoal Grilled Half BBQ Chicken",
-        category: "grills",
-        price: 13.99,
-        calories: 720,
-        prepTime: "18 mins",
-        rating: "4.8 ★",
-        badge: "MUST TRY",
-        isSpicy: false,
-        isSpecial: false,
-        isHalal: true,
-        image: "images/bbq_grill.webp",
-        description: "Marinated half chicken flame-roasted to juicy perfection, brushed with smoky sweet honey BBQ glaze."
-    },
-    {
-        id: "burger-1",
-        name: "Double Smoked Bacon Cheeseburger",
-        category: "burgers",
-        price: 12.99,
-        calories: 780,
-        prepTime: "14 mins",
-        rating: "4.9 ★",
-        badge: "POPULAR",
-        isSpicy: false,
-        isSpecial: true,
-        isHalal: false,
-        image: "images/burger.webp",
-        description: "Two 100% Angus beef patties, double melted cheddar, crispy smoked bacon, caramelized onions on brioche."
-    },
-    {
-        id: "burger-2",
-        name: "Spicy Flame Crispy Chicken Burger",
-        category: "burgers",
-        price: 10.99,
-        calories: 640,
-        prepTime: "12 mins",
-        rating: "4.8 ★",
-        badge: "SPICY",
-        isSpicy: true,
-        isSpecial: false,
-        isHalal: true,
-        image: "images/burger.webp",
-        description: "Buttermilk fried spicy chicken breast, dill pickles, crunchy coleslaw, and fiery red habanero sauce."
-    },
-    {
-        id: "combo-1",
-        name: "The Mega Grill & Shawarma Feast",
-        category: "combos",
-        price: 21.99,
-        calories: 1250,
-        prepTime: "18 mins",
-        rating: "5.0 ★",
-        badge: "25% OFF DEAL",
-        isSpicy: true,
-        isSpecial: true,
-        isHalal: true,
-        image: "images/combo_meal.webp",
-        description: "1 Supreme Shawarma Wrap, 1 Large Loaded Cheese Fries, 4 Flame BBQ Wings + 1 Gourmet Chilled Milkshake."
-    },
-    {
-        id: "combo-2",
-        name: "Double Shawarma & Fries Twin Pack",
-        category: "combos",
-        price: 18.50,
-        calories: 1100,
-        prepTime: "15 mins",
-        rating: "4.9 ★",
-        badge: "VALUE PACK",
-        isSpicy: false,
-        isSpecial: false,
-        isHalal: true,
-        image: "images/combo_meal.webp",
-        description: "2 Choice Shawarma Wraps (Chicken or Beef) + Large Portion Golden French Fries + 2 Dipping Sauces."
-    },
-    {
-        id: "drink-1",
-        name: "Gourmet Chocolate Fudge Milkshake",
-        category: "drinks",
-        price: 5.99,
-        calories: 420,
-        prepTime: "5 mins",
-        rating: "4.9 ★",
-        badge: "SWEET TREAT",
-        isSpicy: false,
-        isSpecial: true,
-        isHalal: true,
-        image: "images/shake.webp",
-        description: "Rich premium Belgian chocolate ice cream blended with fresh milk, whipped cream, and chocolate drizzle."
-    },
-    {
-        id: "drink-2",
-        name: "Strawberry Whipped Cream Smoothie",
-        category: "drinks",
-        price: 5.49,
-        calories: 320,
-        prepTime: "5 mins",
-        rating: "4.8 ★",
-        badge: "FRESH",
-        isSpicy: false,
-        isSpecial: false,
-        isHalal: true,
-        image: "images/shake.webp",
-        description: "Real sun-ripened strawberries blended smooth with vanilla ice cream and whipped topping."
-    }
+/** Menu items customers can actually order right now. */
+function menuItems() {
+    return content.menu.filter(item => item.isAvailable !== false);
+}
+
+function findMenuItem(id) {
+    return content.menu.find(item => item.id === id);
+}
+
+function settings() {
+    return content.settings;
+}
+
+// --- 2. ORDER CONFIGURATION (single source of truth for pricing) ---
+const PORTION_SIZES = [
+    { label: "Regular Portion", extra: 0 },
+    { label: "Large Portion", extra: 2.50 },
+    { label: "Monster Feast", extra: 4.99 }
 ];
 
-// --- 2. INITIAL REVIEWS LIST ---
+const SAUCES = ["Creamy Garlic Toum", "Spicy Harissa Mayo", "Smoky Hickory BBQ", "Warm Cheddar Dip"];
+
+const ADDONS = [
+    { name: "Extra Suya Meat / Chicken", price: 3.50 },
+    { name: "Melted Cheddar Cheese", price: 1.50 },
+    { name: "Pickled Jalapeño Peppers", price: 0.75 },
+    { name: "Crispy Fried Onions", price: 0.75 },
+    { name: "Crispy Smoked Bacon Bits", price: 2.00 }
+];
+
+const STORAGE_KEYS = {
+    cart: "flame_sizzle_cart"
+};
+
+// Pricing rules are admin-editable; read them fresh on every calculation.
+function taxRate() {
+    return (Number(settings().taxRate) || 0) / 100;
+}
+
+function deliveryFee() {
+    return Number(settings().deliveryFee) || 0;
+}
+
+function freeDeliveryThreshold() {
+    return Number(settings().freeDeliveryThreshold) || 0;
+}
+
+// --- 3. REVIEWS come from the shared store (see loadSavedReviews) ---
+/*
 const INITIAL_REVIEWS = [
     {
         name: "David K.",
@@ -257,39 +75,44 @@ const INITIAL_REVIEWS = [
         tag: "Combo Feast",
         comment: "Huge portion size! The mega feast fed me and my roommate easily. Super fresh chocolate milkshake."
     }
-];
+]; */
 
-// --- 3. GLOBAL APPLICATION STATE ---
+// --- 4. GLOBAL APPLICATION STATE ---
 const state = {
     cart: [],
     appliedPromo: null,
     activeCategory: "all",
+    searchTerm: "",
+    sortBy: "featured",
     filterSpicy: false,
     filterSpecial: false,
     filterHalal: true,
     customizingItem: null,
     customizerForm: {
         qty: 1,
-        size: "Regular",
+        size: PORTION_SIZES[0].label,
         sizeExtraPrice: 0,
-        sauces: ["Garlic Toum"],
+        sauces: [SAUCES[0]],
         addons: [],
         notes: ""
     },
     activeOrder: null,
     trackerTimer: null,
+    dealTimer: null,
     reviews: []
 };
 
-// --- 4. DOM ELEMENTS ---
+// --- 5. DOM ELEMENTS ---
 const elements = {
     menuGrid: document.getElementById("menu-grid"),
     menuSearch: document.getElementById("menu-search"),
+    menuSort: document.getElementById("menu-sort"),
+    menuResultsCount: document.getElementById("menu-results-count"),
     categoryPills: document.querySelectorAll(".cat-pill"),
     filterSpicyCheck: document.getElementById("filter-spicy"),
     filterSpecialCheck: document.getElementById("filter-special"),
     filterHalalCheck: document.getElementById("filter-halal"),
-    
+
     // Cart Drawer
     cartToggleBtn: document.getElementById("cart-toggle-btn"),
     cartCountBadge: document.getElementById("cart-count"),
@@ -307,6 +130,9 @@ const elements = {
     cartDelivery: document.getElementById("cart-delivery"),
     cartGrandTotal: document.getElementById("cart-grand-total"),
     proceedCheckoutBtn: document.getElementById("proceed-checkout-btn"),
+    freeDeliveryMeter: document.getElementById("free-delivery-meter"),
+    freeDeliveryLabel: document.getElementById("free-delivery-label"),
+    freeDeliveryFill: document.getElementById("free-delivery-fill"),
 
     // Item Customizer Modal
     customizerOverlay: document.getElementById("customizer-modal-overlay"),
@@ -334,6 +160,7 @@ const elements = {
 
     // Receipt Modal
     receiptOverlay: document.getElementById("receipt-modal-overlay"),
+    closeReceiptBtn: document.getElementById("close-receipt-btn"),
     receiptOrderId: document.getElementById("receipt-order-id"),
     receiptTimestamp: document.getElementById("receipt-timestamp"),
     receiptCustomerInfo: document.getElementById("receipt-customer-info"),
@@ -349,6 +176,7 @@ const elements = {
     trackerOrderNum: document.getElementById("tracker-order-num"),
     etaCountdown: document.getElementById("eta-countdown"),
     etaSubStatus: document.getElementById("eta-sub-status"),
+    callCourierBtn: document.getElementById("call-courier-btn"),
 
     // Reviews
     reviewsGrid: document.getElementById("reviews-grid"),
@@ -356,230 +184,380 @@ const elements = {
     reviewOverlay: document.getElementById("review-modal-overlay"),
     closeReviewBtn: document.getElementById("close-review-btn"),
     writeReviewForm: document.getElementById("write-review-form"),
-    starPickerSpans: document.querySelectorAll("#star-picker span"),
+    starPicker: document.getElementById("star-picker"),
+    starPickerBtns: document.querySelectorAll("#star-picker button"),
 
-    // Toast Container
+    // Chrome
+    header: document.getElementById("header"),
+    backToTopBtn: document.getElementById("back-to-top"),
+    newsletterForm: document.getElementById("newsletter-form"),
+    newsletterEmail: document.getElementById("newsletter-email"),
+    footerYear: document.getElementById("footer-year"),
     toastContainer: document.getElementById("toast-container")
 };
 
-// --- 5. INITIALIZATION ---
+// --- 6. SHARED HELPERS ---
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function money(amount) {
+    return `$${Number(amount).toFixed(2)}`;
+}
+
+function readStorage(key, fallback) {
+    try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return fallback;
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : fallback;
+    } catch {
+        return fallback;
+    }
+}
+
+function writeStorage(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch {
+        /* Storage unavailable (private mode / quota) — the app still works in memory. */
+    }
+}
+
+function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+// --- 7. MODAL / DRAWER MANAGER ---
+const openOverlays = [];
+
+function focusableIn(container) {
+    return Array.from(
+        container.querySelectorAll(
+            'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+    ).filter(el => el.offsetParent !== null || el === document.activeElement);
+}
+
+function openOverlay(overlay) {
+    if (!overlay || overlay.classList.contains("active")) return;
+
+    overlay.dataset.returnFocusId = document.activeElement && document.activeElement.id ? document.activeElement.id : "";
+    overlay.classList.add("active");
+    overlay.setAttribute("aria-hidden", "false");
+    openOverlays.push(overlay);
+    document.body.classList.add("overlay-open");
+
+    // Move focus into the dialog so keyboard and screen-reader users land in the right place.
+    window.requestAnimationFrame(() => {
+        const targets = focusableIn(overlay);
+        if (targets.length) targets[0].focus();
+    });
+}
+
+function closeOverlay(overlay) {
+    if (!overlay || !overlay.classList.contains("active")) return;
+
+    overlay.classList.remove("active");
+    overlay.setAttribute("aria-hidden", "true");
+
+    const index = openOverlays.indexOf(overlay);
+    if (index > -1) openOverlays.splice(index, 1);
+    if (openOverlays.length === 0) document.body.classList.remove("overlay-open");
+
+    const returnId = overlay.dataset.returnFocusId;
+    if (returnId) {
+        const returnEl = document.getElementById(returnId);
+        if (returnEl) returnEl.focus();
+    }
+}
+
+function setupOverlayBehaviour() {
+    document.querySelectorAll(".modal-overlay, .drawer-overlay").forEach(overlay => {
+        // Click on the dim backdrop (never on the panel itself) dismisses the dialog.
+        overlay.addEventListener("mousedown", event => {
+            if (event.target === overlay) closeOverlay(overlay);
+        });
+    });
+
+    document.addEventListener("keydown", event => {
+        if (!openOverlays.length) return;
+        const top = openOverlays[openOverlays.length - 1];
+
+        if (event.key === "Escape") {
+            event.preventDefault();
+            closeOverlay(top);
+            return;
+        }
+
+        if (event.key === "Tab") {
+            const targets = focusableIn(top);
+            if (!targets.length) return;
+            const first = targets[0];
+            const last = targets[targets.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    });
+}
+
+// --- 8. INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
+    renderAnnouncements();
+    renderDeals();
+    renderSiteSettings();
     loadSavedReviews();
+    loadSavedCart();
     renderMenu();
     renderReviews();
+    renderCartDrawer();
+    setupOverlayBehaviour();
     setupEventListeners();
+    setupScrollBehaviour();
+    setupRevealAnimations();
     startDailyDealTimer();
+
+    if (elements.footerYear) {
+        elements.footerYear.textContent = String(new Date().getFullYear());
+    }
 });
 
-// --- 6. MENU RENDER & FILTER LOGIC ---
-function renderMenu() {
-    let filtered = MENU_ITEMS.filter(item => {
-        // Category filter
-        if (state.activeCategory !== "all" && item.category !== state.activeCategory) {
-            return false;
-        }
-        // Checkbox filters
+// --- 9. MENU RENDER, SEARCH, FILTER & SORT ---
+function getVisibleMenuItems() {
+    const term = state.searchTerm.trim().toLowerCase();
+
+    const filtered = menuItems().filter(item => {
+        if (state.activeCategory !== "all" && item.category !== state.activeCategory) return false;
         if (state.filterSpicy && !item.isSpicy) return false;
         if (state.filterSpecial && !item.isSpecial) return false;
         if (state.filterHalal && !item.isHalal) return false;
 
+        if (term) {
+            const haystack = `${item.name} ${item.description} ${item.category} ${item.badge}`.toLowerCase();
+            if (!haystack.includes(term)) return false;
+        }
         return true;
     });
 
+    const sorters = {
+        "price-asc": (a, b) => a.price - b.price,
+        "price-desc": (a, b) => b.price - a.price,
+        rating: (a, b) => b.rating - a.rating,
+        fastest: (a, b) => a.prepTime - b.prepTime
+    };
+
+    return sorters[state.sortBy] ? filtered.slice().sort(sorters[state.sortBy]) : filtered;
+}
+
+function renderMenu() {
+    const filtered = getVisibleMenuItems();
+
+    if (elements.menuResultsCount) {
+        elements.menuResultsCount.textContent = filtered.length
+            ? `${filtered.length} item${filtered.length === 1 ? "" : "s"} available`
+            : "No matching items";
+    }
+
     if (filtered.length === 0) {
         elements.menuGrid.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
-                <p style="font-size: 3rem; margin-bottom: 12px;">🔍</p>
-                <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 8px;">No Food Items Found</h3>
-                <p style="color: var(--text-muted);">Try adjusting your search keywords or preference filters.</p>
+            <div class="empty-state">
+                <p class="empty-icon" aria-hidden="true">🔍</p>
+                <h3>No Food Items Found</h3>
+                <p>Try adjusting your search keywords or preference filters.</p>
+                <button class="btn btn-secondary" type="button" id="reset-menu-filters">Reset all filters</button>
             </div>
         `;
+        const resetBtn = document.getElementById("reset-menu-filters");
+        if (resetBtn) resetBtn.addEventListener("click", resetMenuFilters);
         return;
     }
 
     elements.menuGrid.innerHTML = filtered.map(item => `
-        <div class="food-card">
+        <article class="food-card reveal is-visible">
             <div class="card-img-wrapper">
-                <img src="${item.image}" alt="${item.name}" class="card-img" loading="lazy" decoding="async" width="600" height="400">
-                <span class="card-badge-tag">${item.badge}</span>
+                <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" class="card-img" loading="lazy" decoding="async" width="600" height="400">
+                <span class="card-badge-tag">${escapeHtml(item.badge)}</span>
             </div>
             <div class="card-body">
                 <div class="card-title-row">
-                    <h3>${item.name}</h3>
-                    <span class="rating-pill">${item.rating}</span>
+                    <h3>${escapeHtml(item.name)}</h3>
+                    <span class="rating-pill">${item.rating.toFixed(1)} ★</span>
                 </div>
-                <p class="card-desc">${item.description}</p>
-                <div class="card-meta-bar">
+                <p class="card-desc">${escapeHtml(item.description)}</p>
+                <p class="card-meta-bar">
                     <span>🔥 ${item.calories} kcal</span>
-                    <span>⏱️ ${item.prepTime}</span>
-                    <span>${item.isSpicy ? '🌶️ Spicy' : '😋 Mild'}</span>
-                </div>
+                    <span>⏱️ ${item.prepTime} mins</span>
+                    <span>${item.isSpicy ? "🌶️ Spicy" : "😋 Mild"}</span>
+                </p>
                 <div class="card-footer">
-                    <span class="card-price">$${item.price.toFixed(2)}</span>
+                    <span class="card-price">${money(item.price)}</span>
                     <div class="card-actions">
-                        <button class="btn btn-sm btn-outline customize-btn" data-id="${item.id}">
+                        <button class="btn btn-sm btn-outline customize-btn" type="button" data-id="${escapeHtml(item.id)}">
                             ⚙️ Customize
                         </button>
-                        <button class="btn btn-sm btn-primary quick-add-btn" data-id="${item.id}">
+                        <button class="btn btn-sm btn-primary quick-add-btn" type="button" data-id="${escapeHtml(item.id)}">
                             + Add
                         </button>
                     </div>
                 </div>
             </div>
-        </div>
-    `).join('');
-
-    // Attach button listeners inside grid
-    document.querySelectorAll(".customize-btn").forEach(btn => {
-        btn.addEventListener("click", () => openCustomizerModal(btn.dataset.id));
-    });
-
-    document.querySelectorAll(".quick-add-btn").forEach(btn => {
-        btn.addEventListener("click", () => quickAddToCart(btn.dataset.id));
-    });
+        </article>
+    `).join("");
 }
 
-// --- 7. CUSTOMIZER MODAL LOGIC ---
+function resetMenuFilters() {
+    state.activeCategory = "all";
+    state.searchTerm = "";
+    state.sortBy = "featured";
+    state.filterSpicy = false;
+    state.filterSpecial = false;
+
+    if (elements.menuSearch) elements.menuSearch.value = "";
+    if (elements.menuSort) elements.menuSort.value = "featured";
+    if (elements.filterSpicyCheck) elements.filterSpicyCheck.checked = false;
+    if (elements.filterSpecialCheck) elements.filterSpecialCheck.checked = false;
+
+    elements.categoryPills.forEach(pill => {
+        const isAll = pill.dataset.category === "all";
+        pill.classList.toggle("active", isAll);
+        pill.setAttribute("aria-selected", String(isAll));
+    });
+
+    renderMenu();
+}
+
+// --- 10. CUSTOMIZER MODAL LOGIC ---
 function openCustomizerModal(itemId) {
-    const item = MENU_ITEMS.find(i => i.id === itemId);
+    const item = findMenuItem(itemId);
     if (!item) return;
 
     state.customizingItem = item;
     state.customizerForm = {
         qty: 1,
-        size: "Regular",
+        size: PORTION_SIZES[0].label,
         sizeExtraPrice: 0,
-        sauces: ["Garlic Toum"],
+        sauces: [SAUCES[0]],
         addons: [],
         notes: ""
     };
 
-    // Header info
     elements.customItemImg.src = item.image;
+    elements.customItemImg.alt = item.name;
     elements.customItemName.textContent = item.name;
     elements.customItemDesc.textContent = item.description;
     elements.customItemCal.textContent = `🔥 ${item.calories} kcal`;
-    elements.customItemPrep.textContent = `⏱️ ${item.prepTime}`;
+    elements.customItemPrep.textContent = `⏱️ ${item.prepTime} mins`;
     elements.customNotes.value = "";
     elements.customQtyDisplay.textContent = "1";
 
-    // Size Options
-    const sizes = [
-        { label: "Regular Portion", extra: 0 },
-        { label: "Large Portion (+ $2.50)", extra: 2.50 },
-        { label: "Monster Feast (+ $4.99)", extra: 4.99 }
-    ];
-    elements.sizeOptionsContainer.innerHTML = sizes.map((s, idx) => `
+    elements.sizeOptionsContainer.innerHTML = PORTION_SIZES.map((size, idx) => `
         <label class="opt-label">
-            <div>
-                <input type="radio" name="custom-size" value="${s.label}" data-extra="${s.extra}" ${idx === 0 ? 'checked' : ''}>
-                <span>${s.label}</span>
-            </div>
+            <span class="opt-main">
+                <input type="radio" name="custom-size" value="${escapeHtml(size.label)}" data-extra="${size.extra}" ${idx === 0 ? "checked" : ""}>
+                <span>${escapeHtml(size.label)}</span>
+            </span>
+            <span class="opt-price">${size.extra ? `+${money(size.extra)}` : "Included"}</span>
         </label>
-    `).join('');
+    `).join("");
 
-    // Sauces Options
-    const sauces = ["Creamy Garlic Toum", "Spicy Harissa Mayo", "Smoky Hickory BBQ", "Warm Cheddar Dip"];
-    elements.sauceOptionsContainer.innerHTML = sauces.map((sauce, idx) => `
+    elements.sauceOptionsContainer.innerHTML = SAUCES.map((sauce, idx) => `
         <label class="opt-label">
-            <div>
-                <input type="checkbox" name="custom-sauce" value="${sauce}" ${idx === 0 ? 'checked' : ''}>
-                <span>${sauce}</span>
-            </div>
-            <span style="font-size:0.75rem; color:var(--text-muted);">FREE</span>
+            <span class="opt-main">
+                <input type="checkbox" name="custom-sauce" value="${escapeHtml(sauce)}" ${idx === 0 ? "checked" : ""}>
+                <span>${escapeHtml(sauce)}</span>
+            </span>
+            <span class="opt-price opt-free">FREE</span>
         </label>
-    `).join('');
+    `).join("");
 
-    // Addons Options
-    const addons = [
-        { name: "Extra Suya Meat / Chicken", price: 3.50 },
-        { name: "Melted Cheddar Cheese", price: 1.50 },
-        { name: "Pickled Jalapeño Peppers", price: 0.75 },
-        { name: "Crispy Fried Onions", price: 0.75 },
-        { name: "Crispy Smoked Bacon Bits", price: 2.00 }
-    ];
-    elements.addonsOptionsContainer.innerHTML = addons.map(add => `
+    elements.addonsOptionsContainer.innerHTML = ADDONS.map(addon => `
         <label class="opt-label">
-            <div>
-                <input type="checkbox" name="custom-addon" value="${add.name}" data-price="${add.price}">
-                <span>${add.name}</span>
-            </div>
-            <span style="font-weight:700; color:var(--secondary); font-size:0.82rem;">+$${add.price.toFixed(2)}</span>
+            <span class="opt-main">
+                <input type="checkbox" name="custom-addon" value="${escapeHtml(addon.name)}" data-price="${addon.price}">
+                <span>${escapeHtml(addon.name)}</span>
+            </span>
+            <span class="opt-price opt-paid">+${money(addon.price)}</span>
         </label>
-    `).join('');
+    `).join("");
 
-    updateCustomizerPrice();
-
-    // Show modal
-    elements.customizerOverlay.classList.add("active");
-
-    // Listeners for choices inside customizer
-    elements.sizeOptionsContainer.querySelectorAll("input[type=radio]").forEach(radio => {
-        radio.addEventListener("change", (e) => {
-            state.customizerForm.size = e.target.value;
-            state.customizerForm.sizeExtraPrice = parseFloat(e.target.dataset.extra);
-            updateCustomizerPrice();
-        });
-    });
-
-    elements.addonsOptionsContainer.querySelectorAll("input[type=checkbox]").forEach(cb => {
-        cb.addEventListener("change", updateCustomizerPrice);
-    });
+    syncCustomizerSelections();
+    openOverlay(elements.customizerOverlay);
 }
 
-function updateCustomizerPrice() {
+/** Reads every control in the customizer back into state and repaints the live price. */
+function syncCustomizerSelections() {
     if (!state.customizingItem) return;
-    
-    let base = state.customizingItem.price;
-    let extraSize = state.customizerForm.sizeExtraPrice || 0;
 
-    let addonsPrice = 0;
-    const selectedAddons = [];
-    elements.addonsOptionsContainer.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
-        addonsPrice += parseFloat(cb.dataset.price);
-        selectedAddons.push(cb.value);
-    });
-    state.customizerForm.addons = selectedAddons;
+    const checkedSize = elements.sizeOptionsContainer.querySelector("input[type=radio]:checked");
+    state.customizerForm.size = checkedSize ? checkedSize.value : PORTION_SIZES[0].label;
+    state.customizerForm.sizeExtraPrice = checkedSize ? parseFloat(checkedSize.dataset.extra) || 0 : 0;
 
-    const selectedSauces = [];
-    elements.sauceOptionsContainer.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
-        selectedSauces.push(cb.value);
-    });
-    state.customizerForm.sauces = selectedSauces;
+    state.customizerForm.sauces = Array.from(
+        elements.sauceOptionsContainer.querySelectorAll("input[type=checkbox]:checked")
+    ).map(cb => cb.value);
 
-    let unitPrice = base + extraSize + addonsPrice;
-    let totalPrice = unitPrice * state.customizerForm.qty;
+    state.customizerForm.addons = Array.from(
+        elements.addonsOptionsContainer.querySelectorAll("input[type=checkbox]:checked")
+    ).map(cb => cb.value);
 
-    elements.customCalculatedPrice.textContent = `$${totalPrice.toFixed(2)}`;
+    elements.customCalculatedPrice.textContent = money(customizerUnitPrice() * state.customizerForm.qty);
 }
 
-// --- 8. CART MANAGEMENT LOGIC ---
+function customizerUnitPrice() {
+    const addonsTotal = state.customizerForm.addons.reduce((sum, name) => {
+        const addon = ADDONS.find(a => a.name === name);
+        return sum + (addon ? addon.price : 0);
+    }, 0);
+
+    return state.customizingItem.price + (state.customizerForm.sizeExtraPrice || 0) + addonsTotal;
+}
+
+// --- 11. CART MANAGEMENT LOGIC ---
+function loadSavedCart() {
+    state.cart = readStorage(STORAGE_KEYS.cart, []);
+}
+
+function saveCart() {
+    writeStorage(STORAGE_KEYS.cart, state.cart);
+}
+
 function quickAddToCart(itemId) {
-    const item = MENU_ITEMS.find(i => i.id === itemId);
+    const item = findMenuItem(itemId);
     if (!item) return;
 
     addCartItem({
         id: item.id,
-        cartItemId: item.id + "-" + Date.now(),
+        cartItemId: `${item.id}-${Date.now()}`,
         name: item.name,
-        price: item.price,
         unitBasePrice: item.price,
         qty: 1,
-        size: "Regular",
-        sauces: ["Garlic Toum"],
+        size: PORTION_SIZES[0].label,
+        sauces: [SAUCES[0]],
         addons: [],
         notes: "",
         image: item.image
     });
 
-    showToast(`Added ${item.name} to cart! 🔥`);
+    showToast(`Added ${item.name} to cart!`);
 }
 
 function addCartItem(cartObj) {
-    // Check if duplicate with same options exists
-    const existingIndex = state.cart.findIndex(c => 
-        c.id === cartObj.id && 
+    // Identical configurations merge into one line rather than stacking duplicates.
+    const existingIndex = state.cart.findIndex(c =>
+        c.id === cartObj.id &&
         c.size === cartObj.size &&
+        c.notes === cartObj.notes &&
         JSON.stringify(c.sauces) === JSON.stringify(cartObj.sauces) &&
         JSON.stringify(c.addons) === JSON.stringify(cartObj.addons)
     );
@@ -590,93 +568,121 @@ function addCartItem(cartObj) {
         state.cart.push(cartObj);
     }
 
+    saveCart();
     renderCartDrawer();
 }
 
+function cartSubtotal() {
+    return state.cart.reduce((sum, item) => sum + item.unitBasePrice * item.qty, 0);
+}
+
+function cartTotals() {
+    const subtotal = cartSubtotal();
+    const discount = state.appliedPromo ? subtotal * (state.appliedPromo.percent / 100) : 0;
+    const netSubtotal = subtotal - discount;
+    const tax = netSubtotal * taxRate();
+
+    const freeDelivery =
+        state.cart.length === 0 ||
+        subtotal >= freeDeliveryThreshold() ||
+        (state.appliedPromo && state.appliedPromo.code === "FREESHIP");
+
+    const delivery = freeDelivery ? 0 : deliveryFee();
+
+    return { subtotal, discount, netSubtotal, tax, delivery, freeDelivery, grandTotal: netSubtotal + tax + delivery };
+}
+
 function renderCartDrawer() {
-    // Update badge
     const totalQty = state.cart.reduce((sum, item) => sum + item.qty, 0);
-    elements.cartCountBadge.textContent = totalQty;
+    elements.cartCountBadge.textContent = String(totalQty);
+    elements.cartToggleBtn.setAttribute(
+        "aria-label",
+        totalQty ? `View shopping cart, ${totalQty} item${totalQty === 1 ? "" : "s"}` : "View shopping cart, empty"
+    );
 
     if (state.cart.length === 0) {
         elements.cartItemsContainer.innerHTML = `
-            <div style="text-align: center; padding: 40px 10px;">
-                <p style="font-size: 2.8rem; margin-bottom: 12px;">🛒</p>
-                <h4 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 6px;">Your Cart is Empty</h4>
-                <p style="color: var(--text-muted); font-size: 0.85rem;">Discover our flame grills and shawarmas to add tasty treats!</p>
+            <div class="empty-state empty-cart">
+                <p class="empty-icon" aria-hidden="true">🛒</p>
+                <h3>Your Cart is Empty</h3>
+                <p>Discover our flame grills and shawarmas to add tasty treats!</p>
             </div>
         `;
-        elements.cartSubtotal.textContent = "$0.00";
-        elements.cartTax.textContent = "$0.00";
-        elements.cartDelivery.textContent = "$0.00";
-        elements.cartGrandTotal.textContent = "$0.00";
-        elements.discountRow.style.display = "none";
-        return;
-    }
+    } else {
+        elements.cartItemsContainer.innerHTML = state.cart.map(item => {
+            const details = [item.size]
+                .concat(item.sauces.length ? item.sauces.join(", ") : [])
+                .concat(item.addons.length ? `+ ${item.addons.join(", ")}` : [])
+                .join(" • ");
 
-    elements.cartItemsContainer.innerHTML = state.cart.map(item => {
-        let detailsText = item.size;
-        if (item.sauces.length > 0) detailsText += ` • ${item.sauces.join(", ")}`;
-        if (item.addons.length > 0) detailsText += ` • +${item.addons.join(", ")}`;
-
-        return `
-            <div class="cart-item-card">
-                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
-                <div class="cart-item-info">
-                    <h4>${item.name}</h4>
-                    <p class="cart-item-details">${detailsText}</p>
-                    <div class="cart-item-bottom">
-                        <span class="cart-item-price">$${(item.unitBasePrice * item.qty).toFixed(2)}</span>
-                        <div class="quantity-picker" style="transform: scale(0.85); transform-origin: right center;">
-                            <button class="cart-qty-btn" data-cart-id="${item.cartItemId}" data-action="minus">-</button>
-                            <span>${item.qty}</span>
-                            <button class="cart-qty-btn" data-cart-id="${item.cartItemId}" data-action="plus">+</button>
+            return `
+                <div class="cart-item-card">
+                    <img src="${escapeHtml(item.image)}" alt="" class="cart-item-img" width="60" height="60">
+                    <div class="cart-item-info">
+                        <div class="cart-item-head">
+                            <h3>${escapeHtml(item.name)}</h3>
+                            <button class="cart-remove-btn" type="button" data-cart-id="${escapeHtml(item.cartItemId)}" aria-label="Remove ${escapeHtml(item.name)} from cart">&times;</button>
+                        </div>
+                        <p class="cart-item-details">${escapeHtml(details)}</p>
+                        ${item.notes ? `<p class="cart-item-note">📝 ${escapeHtml(item.notes)}</p>` : ""}
+                        <div class="cart-item-bottom">
+                            <span class="cart-item-price">${money(item.unitBasePrice * item.qty)}</span>
+                            <div class="quantity-picker quantity-picker-sm">
+                                <button class="cart-qty-btn" type="button" data-cart-id="${escapeHtml(item.cartItemId)}" data-action="minus" aria-label="Decrease quantity of ${escapeHtml(item.name)}">-</button>
+                                <span>${item.qty}</span>
+                                <button class="cart-qty-btn" type="button" data-cart-id="${escapeHtml(item.cartItemId)}" data-action="plus" aria-label="Increase quantity of ${escapeHtml(item.name)}">+</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        `;
-    }).join('');
+            `;
+        }).join("");
+    }
 
-    // Attach listeners inside cart items
-    document.querySelectorAll(".cart-qty-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            const cartId = btn.dataset.cartId;
-            const action = btn.dataset.action;
-            updateCartQuantity(cartId, action);
-        });
-    });
+    const totals = cartTotals();
 
-    // Compute Totals
-    const subtotal = state.cart.reduce((sum, item) => sum + (item.unitBasePrice * item.qty), 0);
-    
-    let discountAmount = 0;
-    if (state.appliedPromo) {
-        discountAmount = subtotal * (state.appliedPromo.percent / 100);
-        elements.discountRow.style.display = "flex";
+    elements.cartSubtotal.textContent = money(totals.subtotal);
+    elements.cartTax.textContent = money(totals.tax);
+    elements.cartGrandTotal.textContent = money(totals.grandTotal);
+
+    if (totals.delivery === 0) {
+        elements.cartDelivery.innerHTML = '<span class="free-tag">FREE</span>';
+    } else {
+        elements.cartDelivery.textContent = money(totals.delivery);
+    }
+
+    if (state.appliedPromo && state.appliedPromo.percent > 0) {
+        elements.discountRow.hidden = false;
         elements.discountPercent.textContent = `${state.appliedPromo.percent}%`;
-        elements.cartDiscount.textContent = `-$${discountAmount.toFixed(2)}`;
+        elements.cartDiscount.textContent = `-${money(totals.discount)}`;
     } else {
-        elements.discountRow.style.display = "none";
+        elements.discountRow.hidden = true;
     }
 
-    const netSubtotal = subtotal - discountAmount;
-    const tax = netSubtotal * 0.08; // 8% sales tax
-    
-    // Free delivery if subtotal > $30 or FREESHIP promo
-    let delivery = 3.99;
-    if (subtotal >= 30.00 || (state.appliedPromo && state.appliedPromo.code === 'FREESHIP')) {
-        delivery = 0.00;
-        elements.cartDelivery.innerHTML = `<span style="color:#00E676; font-weight:700;">FREE</span>`;
-    } else {
-        elements.cartDelivery.textContent = `$${delivery.toFixed(2)}`;
+    elements.proceedCheckoutBtn.disabled = state.cart.length === 0;
+    renderFreeDeliveryMeter(totals);
+}
+
+function renderFreeDeliveryMeter(totals) {
+    if (!elements.freeDeliveryMeter) return;
+
+    if (state.cart.length === 0) {
+        elements.freeDeliveryMeter.hidden = true;
+        return;
     }
 
-    const grandTotal = netSubtotal + tax + delivery;
+    elements.freeDeliveryMeter.hidden = false;
+    const threshold = freeDeliveryThreshold();
+    const progress = threshold > 0 ? Math.min(100, (totals.subtotal / threshold) * 100) : 100;
+    elements.freeDeliveryFill.style.width = `${progress}%`;
 
-    elements.cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
-    elements.cartTax.textContent = `$${tax.toFixed(2)}`;
-    elements.cartGrandTotal.textContent = `$${grandTotal.toFixed(2)}`;
+    if (totals.subtotal >= threshold) {
+        elements.freeDeliveryMeter.classList.add("is-complete");
+        elements.freeDeliveryLabel.textContent = "🎉 You've unlocked free delivery!";
+    } else {
+        elements.freeDeliveryMeter.classList.remove("is-complete");
+        elements.freeDeliveryLabel.textContent = `Add ${money(threshold - totals.subtotal)} more for free delivery`;
+    }
 }
 
 function updateCartQuantity(cartItemId, action) {
@@ -685,322 +691,399 @@ function updateCartQuantity(cartItemId, action) {
 
     if (action === "plus") {
         state.cart[idx].qty += 1;
-    } else if (action === "minus") {
+    } else {
         state.cart[idx].qty -= 1;
-        if (state.cart[idx].qty <= 0) {
-            state.cart.splice(idx, 1);
-        }
+        if (state.cart[idx].qty <= 0) state.cart.splice(idx, 1);
     }
+
+    saveCart();
     renderCartDrawer();
 }
 
-// --- 9. EVENT LISTENERS SETUP ---
+function removeCartItem(cartItemId) {
+    const idx = state.cart.findIndex(c => c.cartItemId === cartItemId);
+    if (idx === -1) return;
+
+    const [removed] = state.cart.splice(idx, 1);
+    saveCart();
+    renderCartDrawer();
+    showToast(`Removed ${removed.name} from cart.`);
+}
+
+// --- 12. EVENT LISTENERS SETUP ---
 function setupEventListeners() {
-    // Mobile Hamburger Menu Toggle
+    setupNavigation();
+    setupMenuControls();
+    setupCartControls();
+    setupCustomizerControls();
+    setupCheckoutControls();
+    setupTrackerControls();
+    setupReviewControls();
+    setupNewsletter();
+}
+
+function setupNavigation() {
     const hamburger = document.getElementById("menu-hamburger");
     const navMenu = document.getElementById("nav-menu");
+
     if (hamburger && navMenu) {
         hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navMenu.classList.toggle("active");
+            const isOpen = navMenu.classList.toggle("active");
+            hamburger.classList.toggle("active", isOpen);
+            hamburger.setAttribute("aria-expanded", String(isOpen));
+            hamburger.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
         });
+
         document.querySelectorAll(".nav-link").forEach(link => {
             link.addEventListener("click", () => {
                 hamburger.classList.remove("active");
                 navMenu.classList.remove("active");
+                hamburger.setAttribute("aria-expanded", "false");
+                hamburger.setAttribute("aria-label", "Open navigation menu");
             });
         });
     }
 
-    // Menu Category Pills
+    // Footer menu links jump to the menu with that category pre-selected.
+    document.querySelectorAll("[data-jump-category]").forEach(link => {
+        link.addEventListener("click", () => {
+            const category = link.dataset.jumpCategory;
+            const pill = document.querySelector(`.cat-pill[data-category="${category}"]`);
+            if (pill) pill.click();
+        });
+    });
+}
+
+function setupMenuControls() {
     elements.categoryPills.forEach(pill => {
         pill.addEventListener("click", () => {
-            elements.categoryPills.forEach(p => p.classList.remove("active"));
+            elements.categoryPills.forEach(p => {
+                p.classList.remove("active");
+                p.setAttribute("aria-selected", "false");
+            });
             pill.classList.add("active");
+            pill.setAttribute("aria-selected", "true");
             state.activeCategory = pill.dataset.category;
             renderMenu();
         });
     });
 
-    // Checkboxes
-    elements.filterSpicyCheck.addEventListener("change", (e) => {
-        state.filterSpicy = e.target.checked;
-        renderMenu();
-    });
-    elements.filterSpecialCheck.addEventListener("change", (e) => {
-        state.filterSpecial = e.target.checked;
-        renderMenu();
-    });
-    elements.filterHalalCheck.addEventListener("change", (e) => {
-        state.filterHalal = e.target.checked;
-        renderMenu();
-    });
-
-    // Quick Add Hero item
-    document.querySelectorAll(".quick-add-hero, .add-deal-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const itemId = btn.dataset.id;
-            quickAddToCart(itemId);
+    if (elements.menuSearch) {
+        elements.menuSearch.addEventListener("input", event => {
+            state.searchTerm = event.target.value;
+            renderMenu();
         });
+    }
+
+    if (elements.menuSort) {
+        elements.menuSort.addEventListener("change", event => {
+            state.sortBy = event.target.value;
+            renderMenu();
+        });
+    }
+
+    elements.filterSpicyCheck.addEventListener("change", event => {
+        state.filterSpicy = event.target.checked;
+        renderMenu();
+    });
+    elements.filterSpecialCheck.addEventListener("change", event => {
+        state.filterSpecial = event.target.checked;
+        renderMenu();
+    });
+    elements.filterHalalCheck.addEventListener("change", event => {
+        state.filterHalal = event.target.checked;
+        renderMenu();
     });
 
-    // Cart Drawer Toggle
-    elements.cartToggleBtn.addEventListener("click", () => {
-        elements.cartDrawerOverlay.classList.add("active");
+    // Delegated so dynamically rendered cards never need listener re-binding.
+    elements.menuGrid.addEventListener("click", event => {
+        const customizeBtn = event.target.closest(".customize-btn");
+        if (customizeBtn) {
+            openCustomizerModal(customizeBtn.dataset.id);
+            return;
+        }
+        const addBtn = event.target.closest(".quick-add-btn");
+        if (addBtn) quickAddToCart(addBtn.dataset.id);
     });
-    elements.closeCartBtn.addEventListener("click", () => {
-        elements.cartDrawerOverlay.classList.remove("active");
+
+    document.querySelectorAll(".quick-add-hero").forEach(btn => {
+        btn.addEventListener("click", () => quickAddToCart(btn.dataset.id));
     });
-    elements.cartDrawerOverlay.addEventListener("click", (e) => {
-        if (e.target === elements.cartDrawerOverlay) {
-            elements.cartDrawerOverlay.classList.remove("active");
+
+    const dealsGrid = document.getElementById("deals-grid");
+    if (dealsGrid) {
+        dealsGrid.addEventListener("click", event => {
+            const dealBtn = event.target.closest(".add-deal-btn");
+            if (dealBtn) quickAddToCart(dealBtn.dataset.id);
+        });
+    }
+}
+
+function setupCartControls() {
+    elements.cartToggleBtn.addEventListener("click", () => openOverlay(elements.cartDrawerOverlay));
+    elements.closeCartBtn.addEventListener("click", () => closeOverlay(elements.cartDrawerOverlay));
+
+    elements.cartItemsContainer.addEventListener("click", event => {
+        const removeBtn = event.target.closest(".cart-remove-btn");
+        if (removeBtn) {
+            removeCartItem(removeBtn.dataset.cartId);
+            return;
+        }
+        const qtyBtn = event.target.closest(".cart-qty-btn");
+        if (qtyBtn) updateCartQuantity(qtyBtn.dataset.cartId, qtyBtn.dataset.action);
+    });
+
+    elements.applyPromoBtn.addEventListener("click", applyPromoCode);
+    elements.promoInput.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            applyPromoCode();
         }
     });
 
-    // Customizer Modal Quantity buttons
+    elements.proceedCheckoutBtn.addEventListener("click", () => {
+        if (state.cart.length === 0) {
+            showToast("Your cart is empty — add items first.");
+            return;
+        }
+        closeOverlay(elements.cartDrawerOverlay);
+        elements.checkoutFinalTotal.textContent = money(cartTotals().grandTotal);
+        openOverlay(elements.checkoutOverlay);
+    });
+}
+
+function applyPromoCode() {
+    const code = elements.promoInput.value.trim().toUpperCase();
+    const promo = (settings().promos || []).find(p => String(p.code).toUpperCase() === code);
+
+    if (promo) {
+        state.appliedPromo = promo;
+        elements.promoStatusMsg.className = "promo-status is-valid";
+        elements.promoStatusMsg.textContent = `✔ ${promo.label}`;
+        showToast(`Promo code ${promo.code} applied!`);
+    } else {
+        state.appliedPromo = null;
+        elements.promoStatusMsg.className = "promo-status is-invalid";
+        elements.promoStatusMsg.textContent = code ? "✖ Invalid promo code" : "✖ Enter a promo code first";
+    }
+
+    renderCartDrawer();
+}
+
+function setupCustomizerControls() {
+    elements.closeCustomizerBtn.addEventListener("click", () => closeOverlay(elements.customizerOverlay));
+
+    // One delegated listener covers size, sauce and add-on controls.
+    elements.customizerOverlay.addEventListener("change", event => {
+        if (event.target.matches("input[name=custom-size], input[name=custom-sauce], input[name=custom-addon]")) {
+            syncCustomizerSelections();
+        }
+    });
+
     elements.qtyMinusBtn.addEventListener("click", () => {
         if (state.customizerForm.qty > 1) {
             state.customizerForm.qty -= 1;
-            elements.customQtyDisplay.textContent = state.customizerForm.qty;
-            updateCustomizerPrice();
+            elements.customQtyDisplay.textContent = String(state.customizerForm.qty);
+            syncCustomizerSelections();
         }
     });
+
     elements.qtyPlusBtn.addEventListener("click", () => {
+        if (state.customizerForm.qty >= 20) return;
         state.customizerForm.qty += 1;
-        elements.customQtyDisplay.textContent = state.customizerForm.qty;
-        updateCustomizerPrice();
+        elements.customQtyDisplay.textContent = String(state.customizerForm.qty);
+        syncCustomizerSelections();
     });
 
-    // Add to Cart Confirm in Customizer
     elements.addCartConfirmBtn.addEventListener("click", () => {
         if (!state.customizingItem) return;
-        
-        let base = state.customizingItem.price;
-        let extraSize = state.customizerForm.sizeExtraPrice || 0;
-        let addonsPrice = state.customizerForm.addons.reduce((sum, name) => {
-            if (name.includes("Extra Suya")) return sum + 3.50;
-            if (name.includes("Cheddar Cheese")) return sum + 1.50;
-            if (name.includes("Jalapeño")) return sum + 0.75;
-            if (name.includes("Onions")) return sum + 0.75;
-            if (name.includes("Bacon")) return sum + 2.00;
-            return sum;
-        }, 0);
 
-        let unitBasePrice = base + extraSize + addonsPrice;
+        syncCustomizerSelections();
+        const item = state.customizingItem;
 
         addCartItem({
-            id: state.customizingItem.id,
-            cartItemId: state.customizingItem.id + "-" + Date.now(),
-            name: state.customizingItem.name,
-            price: unitBasePrice * state.customizerForm.qty,
-            unitBasePrice: unitBasePrice,
+            id: item.id,
+            cartItemId: `${item.id}-${Date.now()}`,
+            name: item.name,
+            unitBasePrice: customizerUnitPrice(),
             qty: state.customizerForm.qty,
             size: state.customizerForm.size,
             sauces: [...state.customizerForm.sauces],
             addons: [...state.customizerForm.addons],
-            notes: elements.customNotes.value,
-            image: state.customizingItem.image
+            notes: elements.customNotes.value.trim(),
+            image: item.image
         });
 
-        elements.customizerOverlay.classList.remove("active");
-        showToast(`Added ${state.customizingItem.name} to order! 🌯`);
-    });
-
-    elements.closeCustomizerBtn.addEventListener("click", () => {
-        elements.customizerOverlay.classList.remove("active");
-    });
-
-    // Apply Promo Code
-    elements.applyPromoBtn.addEventListener("click", () => {
-        const code = elements.promoInput.value.trim().toUpperCase();
-        if (code === "FLAME10") {
-            state.appliedPromo = { code: "FLAME10", percent: 10 };
-            elements.promoStatusMsg.innerHTML = `<span style="color:#00E676; font-size:0.8rem;">✔ 10% Discount applied!</span>`;
-            showToast("Promo Code FLAME10 applied!");
-        } else if (code === "FREESHIP") {
-            state.appliedPromo = { code: "FREESHIP", percent: 0 };
-            elements.promoStatusMsg.innerHTML = `<span style="color:#00E676; font-size:0.8rem;">✔ Free Shipping applied!</span>`;
-            showToast("Free Shipping Promo applied!");
-        } else {
-            elements.promoStatusMsg.innerHTML = `<span style="color:#FF1744; font-size:0.8rem;">✖ Invalid promo code</span>`;
-        }
-        renderCartDrawer();
-    });
-
-    // Proceed to Checkout
-    elements.proceedCheckoutBtn.addEventListener("click", () => {
-        if (state.cart.length === 0) {
-            showToast("Your cart is empty! Add items first.");
-            return;
-        }
-        elements.cartDrawerOverlay.classList.remove("active");
-        elements.checkoutFinalTotal.textContent = elements.cartGrandTotal.textContent;
-        elements.checkoutOverlay.classList.add("active");
-    });
-
-    elements.closeCheckoutBtn.addEventListener("click", () => {
-        elements.checkoutOverlay.classList.remove("active");
-    });
-
-    // Order Type Toggle in Checkout
-    document.querySelectorAll(".toggle-option").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".toggle-option").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            const addressGroup = document.getElementById("address-group");
-            if (btn.dataset.type === "pickup") {
-                addressGroup.style.display = "none";
-                document.getElementById("cust-address").removeAttribute("required");
-            } else {
-                addressGroup.style.display = "block";
-                document.getElementById("cust-address").setAttribute("required", "true");
-            }
-        });
-    });
-
-    // Payment Cards click handler
-    document.querySelectorAll(".pay-card").forEach(card => {
-        card.addEventListener("click", () => {
-            document.querySelectorAll(".pay-card").forEach(c => c.classList.remove("active"));
-            card.classList.add("active");
-            card.querySelector("input").checked = true;
-        });
-    });
-
-    // Submit Checkout Form
-    elements.checkoutForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const orderId = "#FS-" + Math.floor(10000 + Math.random() * 90000);
-        const name = document.getElementById("cust-name").value;
-        const phone = document.getElementById("cust-phone").value;
-        const address = document.getElementById("cust-address").value || "Restaurant Pickup";
-        const total = elements.checkoutFinalTotal.textContent;
-
-        state.activeOrder = {
-            orderId,
-            name,
-            phone,
-            address,
-            items: [...state.cart],
-            total,
-            status: "preparing",
-            eta: 25
-        };
-
-        // Render Receipt Modal
-        elements.receiptOrderId.textContent = orderId;
-        elements.receiptTimestamp.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        elements.receiptCustomerInfo.innerHTML = `
-            <p><strong>Customer:</strong> ${name} (${phone})</p>
-            <p><strong>Address:</strong> ${address}</p>
-        `;
-        elements.receiptItemsList.innerHTML = state.cart.map(item => `
-            <div class="receipt-item-row">
-                <span>${item.qty}x ${item.name} (${item.size})</span>
-                <strong>$${(item.unitBasePrice * item.qty).toFixed(2)}</strong>
-            </div>
-        `).join('');
-        elements.receiptTotalsLines.innerHTML = `
-            <div class="receipt-item-row" style="margin-top:10px; font-weight:800; font-size:1rem; color:var(--secondary);">
-                <span>TOTAL PAID</span>
-                <span>${total}</span>
-            </div>
-        `;
-
-        // Clear Cart
-        state.cart = [];
-        renderCartDrawer();
-
-        elements.checkoutOverlay.classList.remove("active");
-        elements.receiptOverlay.classList.add("active");
-
-        showToast("🎉 Order Placed Successfully!");
-    });
-
-    // Receipt buttons
-    elements.viewOrderTrackerBtn.addEventListener("click", () => {
-        elements.receiptOverlay.classList.remove("active");
-        openTrackerModal();
-    });
-    elements.printReceiptBtn.addEventListener("click", () => {
-        window.print();
-    });
-
-    // Tracker Modal Toggle
-    elements.openTrackerBtn.addEventListener("click", openTrackerModal);
-    elements.closeTrackerBtn.addEventListener("click", () => {
-        elements.trackerOverlay.classList.remove("active");
-    });
-
-    // Reviews Modal
-    elements.openReviewModalBtn.addEventListener("click", () => {
-        elements.reviewOverlay.classList.add("active");
-    });
-    elements.closeReviewBtn.addEventListener("click", () => {
-        elements.reviewOverlay.classList.remove("active");
-    });
-
-    // Star Picker in Review Modal
-    elements.starPickerSpans.forEach(star => {
-        star.addEventListener("click", () => {
-            const rating = parseInt(star.dataset.rating);
-            elements.starPickerSpans.forEach(s => {
-                const r = parseInt(s.dataset.rating);
-                if (r <= rating) s.classList.add("active");
-                else s.classList.remove("active");
-            });
-            elements.starPickerSpans[0].parentElement.dataset.selected = rating;
-        });
-    });
-
-    // Write Review Submit
-    elements.writeReviewForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const name = document.getElementById("rev-name").value;
-        const tag = document.getElementById("rev-tag").value;
-        const comment = document.getElementById("rev-comment").value;
-        const stars = parseInt(document.querySelector("#star-picker span.active:last-of-type")?.dataset.rating || 5);
-
-        const newReview = { name, stars, tag, comment };
-        state.reviews.unshift(newReview);
-        saveReviews();
-        renderReviews();
-
-        elements.writeReviewForm.reset();
-        elements.reviewOverlay.classList.remove("active");
-        showToast("Thank you for your feedback! ⭐");
+        closeOverlay(elements.customizerOverlay);
+        showToast(`Added ${item.name} to your order!`);
     });
 }
 
-// --- 10. ORDER TRACKER SIMULATOR ---
+function setupCheckoutControls() {
+    elements.closeCheckoutBtn.addEventListener("click", () => closeOverlay(elements.checkoutOverlay));
+
+    document.querySelectorAll(".toggle-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".toggle-option").forEach(b => {
+                b.classList.remove("active");
+                b.setAttribute("aria-pressed", "false");
+            });
+            btn.classList.add("active");
+            btn.setAttribute("aria-pressed", "true");
+
+            const addressGroup = document.getElementById("address-group");
+            const addressInput = document.getElementById("cust-address");
+            const isPickup = btn.dataset.type === "pickup";
+
+            addressGroup.hidden = isPickup;
+            addressInput.toggleAttribute("required", !isPickup);
+        });
+    });
+
+    document.querySelectorAll(".pay-card").forEach(card => {
+        const radio = card.querySelector("input");
+        radio.addEventListener("change", () => {
+            document.querySelectorAll(".pay-card").forEach(c => c.classList.remove("active"));
+            if (radio.checked) card.classList.add("active");
+        });
+    });
+
+    elements.checkoutForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        if (!elements.checkoutForm.reportValidity()) return;
+        if (state.cart.length === 0) {
+            showToast("Your cart is empty — add items first.");
+            return;
+        }
+
+        placeOrder();
+    });
+
+    elements.closeReceiptBtn.addEventListener("click", () => closeOverlay(elements.receiptOverlay));
+    elements.viewOrderTrackerBtn.addEventListener("click", () => {
+        closeOverlay(elements.receiptOverlay);
+        openTrackerModal();
+    });
+    elements.printReceiptBtn.addEventListener("click", () => window.print());
+}
+
+function placeOrder() {
+    const orderId = `#FS-${Math.floor(10000 + Math.random() * 90000)}`;
+    const name = document.getElementById("cust-name").value.trim();
+    const phone = document.getElementById("cust-phone").value.trim();
+    const isPickup = document.querySelector(".toggle-option.active")?.dataset.type === "pickup";
+    const address = isPickup ? "Restaurant Pickup" : document.getElementById("cust-address").value.trim();
+    const totals = cartTotals();
+
+    state.activeOrder = {
+        orderId,
+        name,
+        phone,
+        address,
+        items: [...state.cart],
+        total: money(totals.grandTotal),
+        status: "preparing",
+        eta: 22
+    };
+
+    elements.receiptOrderId.textContent = orderId;
+    elements.receiptTimestamp.textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    elements.receiptCustomerInfo.innerHTML = `
+        <p><strong>Customer:</strong> ${escapeHtml(name)} (${escapeHtml(phone)})</p>
+        <p><strong>${isPickup ? "Collection" : "Address"}:</strong> ${escapeHtml(address)}</p>
+    `;
+    elements.receiptItemsList.innerHTML = state.cart.map(item => `
+        <p class="receipt-item-row">
+            <span>${item.qty}× ${escapeHtml(item.name)} (${escapeHtml(item.size)})</span>
+            <strong>${money(item.unitBasePrice * item.qty)}</strong>
+        </p>
+    `).join("");
+    elements.receiptTotalsLines.innerHTML = `
+        <p class="receipt-item-row"><span>Subtotal</span><span>${money(totals.subtotal)}</span></p>
+        ${totals.discount > 0 ? `<p class="receipt-item-row"><span>Discount</span><span>-${money(totals.discount)}</span></p>` : ""}
+        <p class="receipt-item-row"><span>Est. Tax</span><span>${money(totals.tax)}</span></p>
+        <p class="receipt-item-row"><span>Delivery</span><span>${totals.delivery === 0 ? "FREE" : money(totals.delivery)}</span></p>
+        <p class="receipt-item-row receipt-total-row"><span>TOTAL PAID</span><span>${money(totals.grandTotal)}</span></p>
+    `;
+
+    recordOrder({
+        orderId,
+        name,
+        phone,
+        address,
+        type: isPickup ? "pickup" : "delivery",
+        placedAt: new Date().toISOString(),
+        items: state.cart.map(i => ({ name: i.name, qty: i.qty, size: i.size, lineTotal: +(i.unitBasePrice * i.qty).toFixed(2) })),
+        subtotal: +totals.subtotal.toFixed(2),
+        discount: +totals.discount.toFixed(2),
+        tax: +totals.tax.toFixed(2),
+        delivery: +totals.delivery.toFixed(2),
+        total: +totals.grandTotal.toFixed(2),
+        status: "preparing"
+    });
+
+    state.cart = [];
+    state.appliedPromo = null;
+    elements.promoInput.value = "";
+    elements.promoStatusMsg.textContent = "";
+    elements.promoStatusMsg.className = "promo-status";
+    saveCart();
+    renderCartDrawer();
+    elements.checkoutForm.reset();
+
+    closeOverlay(elements.checkoutOverlay);
+    openOverlay(elements.receiptOverlay);
+    showToast("🎉 Order placed successfully!");
+}
+
+// --- 13. ORDER TRACKER SIMULATOR ---
+function setupTrackerControls() {
+    elements.openTrackerBtn.addEventListener("click", openTrackerModal);
+    elements.closeTrackerBtn.addEventListener("click", () => closeOverlay(elements.trackerOverlay));
+
+    elements.callCourierBtn.addEventListener("click", () => {
+        showToast("Connecting your call to courier Marcus Vance…");
+    });
+
+    // Stop the simulation whenever the tracker leaves the screen.
+    const observer = new MutationObserver(() => {
+        if (!elements.trackerOverlay.classList.contains("active") && state.trackerTimer) {
+            clearInterval(state.trackerTimer);
+            state.trackerTimer = null;
+        }
+    });
+    observer.observe(elements.trackerOverlay, { attributes: true, attributeFilter: ["class"] });
+}
+
 function openTrackerModal() {
     if (!state.activeOrder) {
         state.activeOrder = {
             orderId: "#FS-84912",
             name: "Customer",
             items: [],
-            total: "$21.99",
+            total: money(21.99),
             status: "preparing",
             eta: 22
         };
     }
 
     elements.trackerOrderNum.textContent = `Order ${state.activeOrder.orderId}`;
-    elements.trackerOverlay.classList.add("active");
+    openOverlay(elements.trackerOverlay);
     simulateTrackerTimeline();
 }
 
 function simulateTrackerTimeline() {
-    let step = 2; // Preparing
-    updateTrackerUI(step, "22 Mins", "Your order is sizzling grilled in kitchen!");
-
     if (state.trackerTimer) clearInterval(state.trackerTimer);
 
     let minutesLeft = 22;
+    updateTrackerUI(2, `${minutesLeft} Mins`, "Your order is sizzling on the grill in our kitchen!");
+
     state.trackerTimer = setInterval(() => {
         minutesLeft -= 1;
+
         if (minutesLeft > 15) {
-            updateTrackerUI(2, `${minutesLeft} Mins`, "Your order is sizzling grilled in kitchen!");
+            updateTrackerUI(2, `${minutesLeft} Mins`, "Your order is sizzling on the grill in our kitchen!");
         } else if (minutesLeft > 5) {
             updateTrackerUI(3, `${minutesLeft} Mins`, "Courier Marcus Vance is riding to your address!");
         } else if (minutesLeft > 0) {
@@ -1008,8 +1091,9 @@ function simulateTrackerTimeline() {
         } else {
             updateTrackerUI(4, "DELIVERED!", "Enjoy your sizzling hot Flame & Sizzle meal!");
             clearInterval(state.trackerTimer);
+            state.trackerTimer = null;
         }
-    }, 4000); // Fast simulation tick
+    }, 4000); // Fast simulation tick for demo purposes.
 }
 
 function updateTrackerUI(activeStep, etaText, subMsg) {
@@ -1022,75 +1106,306 @@ function updateTrackerUI(activeStep, etaText, subMsg) {
         barFill.style.width = percentages[activeStep] || "33%";
     }
 
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 4; i += 1) {
         const stepEl = document.getElementById(`step-${i}`);
-        if (stepEl) {
-            if (i < activeStep) {
-                stepEl.className = "tracker-step step-done";
-            } else if (i === activeStep) {
-                stepEl.className = "tracker-step step-active";
-            } else {
-                stepEl.className = "tracker-step";
-            }
-        }
+        if (!stepEl) continue;
+
+        stepEl.classList.toggle("step-done", i < activeStep);
+        stepEl.classList.toggle("step-active", i === activeStep);
     }
 }
 
-// --- 11. REVIEWS & DAILY DEAL TIMER ---
+// --- 14. REVIEWS ---
+function setupReviewControls() {
+    elements.openReviewModalBtn.addEventListener("click", () => openOverlay(elements.reviewOverlay));
+    elements.closeReviewBtn.addEventListener("click", () => closeOverlay(elements.reviewOverlay));
+
+    elements.starPickerBtns.forEach(star => {
+        star.addEventListener("click", () => {
+            const rating = parseInt(star.dataset.rating, 10);
+            elements.starPicker.dataset.selected = String(rating);
+            elements.starPickerBtns.forEach(s => {
+                s.classList.toggle("active", parseInt(s.dataset.rating, 10) <= rating);
+            });
+        });
+    });
+
+    elements.writeReviewForm.addEventListener("submit", event => {
+        event.preventDefault();
+        if (!elements.writeReviewForm.reportValidity()) return;
+
+        const name = document.getElementById("rev-name").value.trim();
+        const tag = document.getElementById("rev-tag").value;
+        const comment = document.getElementById("rev-comment").value.trim();
+        const stars = parseInt(elements.starPicker.dataset.selected, 10) || 5;
+
+        state.reviews.unshift({ name, stars, tag, comment });
+        saveReviews();
+        renderReviews();
+
+        elements.writeReviewForm.reset();
+        elements.starPicker.dataset.selected = "5";
+        elements.starPickerBtns.forEach(s => s.classList.add("active"));
+
+        closeOverlay(elements.reviewOverlay);
+        showToast("Thank you for your feedback! ⭐");
+    });
+}
+
 function loadSavedReviews() {
-    const saved = localStorage.getItem("flame_sizzle_reviews");
-    if (saved) {
-        state.reviews = JSON.parse(saved);
-    } else {
-        state.reviews = [...INITIAL_REVIEWS];
-    }
+    state.reviews = Array.isArray(content.reviews) ? content.reviews : [];
 }
 
 function saveReviews() {
-    localStorage.setItem("flame_sizzle_reviews", JSON.stringify(state.reviews));
+    content.reviews = state.reviews;
+    window.FlameData.save(content);
 }
 
 function renderReviews() {
-    elements.reviewsGrid.innerHTML = state.reviews.map(rev => `
-        <div class="review-card">
-            <div class="rev-header">
-                <span class="rev-author">${rev.name}</span>
-                <span class="rev-stars">${'★'.repeat(rev.stars)}</span>
-            </div>
-            <span class="rev-tag">${rev.tag}</span>
-            <p class="rev-text">"${rev.comment}"</p>
-        </div>
-    `).join('');
+    elements.reviewsGrid.innerHTML = state.reviews.map(rev => {
+        const stars = Math.max(1, Math.min(5, Number(rev.stars) || 5));
+        return `
+            <article class="review-card reveal is-visible">
+                <div class="rev-header">
+                    <span class="rev-author">${escapeHtml(rev.name)}</span>
+                    <span class="rev-stars" aria-label="${stars} out of 5 stars">${"★".repeat(stars)}<span class="rev-stars-dim">${"★".repeat(5 - stars)}</span></span>
+                </div>
+                <span class="rev-tag">${escapeHtml(rev.tag)}</span>
+                <p class="rev-text">“${escapeHtml(rev.comment)}”</p>
+            </article>
+        `;
+    }).join("");
 }
 
+// --- 15. NEWSLETTER ---
+function setupNewsletter() {
+    if (!elements.newsletterForm) return;
+
+    elements.newsletterForm.addEventListener("submit", event => {
+        event.preventDefault();
+        const email = elements.newsletterEmail.value.trim();
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+            showToast("Please enter a valid email address.");
+            elements.newsletterEmail.focus();
+            return;
+        }
+
+        elements.newsletterForm.reset();
+        showToast("You're on the VIP list — check your inbox! 🎁");
+    });
+}
+
+// --- 16. SCROLL BEHAVIOUR: STICKY HEADER, SCROLLSPY, BACK TO TOP ---
+function setupScrollBehaviour() {
+    const sections = Array.from(document.querySelectorAll("main section[id]"));
+    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+
+    const onScroll = () => {
+        const scrolled = window.scrollY > 24;
+        elements.header.classList.toggle("is-scrolled", scrolled);
+        if (elements.backToTopBtn) {
+            elements.backToTopBtn.classList.toggle("is-visible", window.scrollY > 600);
+        }
+
+        // Highlight the section currently occupying the top third of the viewport.
+        const marker = window.scrollY + window.innerHeight * 0.3;
+        let currentId = sections.length ? sections[0].id : "";
+        sections.forEach(section => {
+            if (section.offsetTop <= marker) currentId = section.id;
+        });
+
+        navLinks.forEach(link => {
+            const isActive = link.getAttribute("href") === `#${currentId}`;
+            link.classList.toggle("active", isActive);
+            if (isActive) {
+                link.setAttribute("aria-current", "page");
+            } else {
+                link.removeAttribute("aria-current");
+            }
+        });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    if (elements.backToTopBtn) {
+        elements.backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : "smooth" });
+        });
+    }
+}
+
+// --- 17. SCROLL REVEAL ANIMATIONS ---
+function setupRevealAnimations() {
+    const revealables = document.querySelectorAll(".reveal:not(.is-visible)");
+
+    if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+        revealables.forEach(el => el.classList.add("is-visible"));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: "0px 0px -60px 0px", threshold: 0.12 });
+
+    revealables.forEach(el => observer.observe(el));
+}
+
+// --- 18. DAILY DEAL COUNTDOWN ---
 function startDailyDealTimer() {
     const timerEl = document.getElementById("deal-timer");
     if (!timerEl) return;
-    
-    let totalSeconds = 4 * 3600 + 28 * 60 + 15; // 04:28:15
 
-    setInterval(() => {
-        totalSeconds -= 1;
-        if (totalSeconds < 0) totalSeconds = 24 * 3600;
+    // Always counts down to midnight so the offer stays believable on every visit.
+    const tick = () => {
+        const now = new Date();
+        const midnight = new Date(now);
+        midnight.setHours(24, 0, 0, 0);
 
-        const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
-        const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-        const s = String(totalSeconds % 60).padStart(2, '0');
+        const totalSeconds = Math.max(0, Math.floor((midnight - now) / 1000));
+        const h = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+        const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+        const s = String(totalSeconds % 60).padStart(2, "0");
 
         timerEl.textContent = `${h} : ${m} : ${s}`;
-    }, 1000);
+    };
+
+    tick();
+    if (state.dealTimer) clearInterval(state.dealTimer);
+    state.dealTimer = setInterval(tick, 1000);
 }
 
-// --- 12. TOAST ALERTS HELPER ---
+// --- 19. TOAST ALERTS ---
 function showToast(message) {
     const toast = document.createElement("div");
     toast.className = "toast";
-    toast.innerHTML = `<span>🔥</span> <span>${message}</span>`;
+    toast.innerHTML = `<span aria-hidden="true">🔥</span><span>${escapeHtml(message)}</span>`;
     elements.toastContainer.appendChild(toast);
 
+    // Force the transition to run from the hidden state.
+    window.requestAnimationFrame(() => toast.classList.add("is-visible"));
+
     setTimeout(() => {
-        toast.style.opacity = "0";
-        toast.style.transform = "translateY(20px)";
+        toast.classList.remove("is-visible");
         setTimeout(() => toast.remove(), 300);
-    }, 3000);
+    }, 3200);
+}
+
+/* ==========================================================================
+   20. ADMIN-DRIVEN CONTENT RENDERING
+   Everything below paints the parts of the page the admin panel controls.
+   ========================================================================== */
+
+function renderAnnouncements() {
+    const track = document.getElementById("announcement-track");
+    if (!track) return;
+
+    const items = (settings().announcements || []).filter(a => a && a.text);
+    if (!items.length) {
+        const bar = track.closest(".announcement-bar");
+        if (bar) bar.hidden = true;
+        return;
+    }
+
+    const strip = items.map(a => {
+        const highlight = a.highlight ? ` <mark>${escapeHtml(a.highlight)}</mark>` : "";
+        return `<span>${escapeHtml(a.text)}${highlight}</span><span class="dot" aria-hidden="true">•</span>`;
+    }).join("");
+
+    // Two identical halves let the marquee loop seamlessly at -50%.
+    track.innerHTML =
+        `<div class="announcement-content">${strip}</div>` +
+        `<div class="announcement-content" aria-hidden="true">${strip}</div>`;
+}
+
+function renderDeals() {
+    const grid = document.getElementById("deals-grid");
+    if (!grid) return;
+
+    const deals = (content.deals || []).filter(d => d && d.enabled !== false);
+    const section = document.getElementById("deals");
+
+    if (!deals.length) {
+        if (section) section.hidden = true;
+        return;
+    }
+    if (section) section.hidden = false;
+
+    grid.innerHTML = deals.map((deal, index) => {
+        const timer = deal.showTimer
+            ? `<p class="deal-timer-box">
+                   <span>Offer Ends In:</span>
+                   <span class="countdown-timer" id="deal-timer">00 : 00 : 00</span>
+               </p>`
+            : "";
+        const oldPrice = Number(deal.oldPrice) > 0
+            ? `<span class="old-price">${money(deal.oldPrice)}</span>`
+            : "";
+
+        return `
+            <article class="deal-card ${index === 0 ? "deal-main" : "deal-secondary"} reveal">
+                <span class="deal-badge">${escapeHtml(deal.badge || "DEAL")}</span>
+                <div class="deal-img-box">
+                    <img src="${escapeHtml(deal.image)}" alt="${escapeHtml(deal.title)}" loading="lazy" decoding="async" width="600" height="400">
+                </div>
+                <div class="deal-info">
+                    ${timer}
+                    <h3>${escapeHtml(deal.title)}</h3>
+                    <p>${escapeHtml(deal.description)}</p>
+                    <div class="deal-price-row">
+                        ${oldPrice}
+                        <span class="new-price">${money(deal.newPrice)}</span>
+                        <button class="btn btn-primary add-deal-btn" type="button" data-id="${escapeHtml(deal.itemId)}">
+                            ${escapeHtml(deal.buttonLabel || "Order Now")}
+                        </button>
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join("");
+}
+
+function renderSiteSettings() {
+    const s = settings();
+
+    const setText = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+    };
+
+    setText("site-address", s.address);
+    setText("site-hours-weekday", s.hoursWeekday);
+    setText("site-hours-weekend", s.hoursWeekend);
+
+    const phones = document.getElementById("site-phones");
+    if (phones) {
+        const toTel = value => `tel:${String(value).replace(/[^\d+]/g, "")}`;
+        phones.innerHTML =
+            `<a href="${escapeHtml(toTel(s.phonePrimary))}">${escapeHtml(s.phonePrimary)}</a>` +
+            (s.phoneSecondary ? ` / <a href="${escapeHtml(toTel(s.phoneSecondary))}">${escapeHtml(s.phoneSecondary)}</a>` : "");
+    }
+
+    const statusBox = document.getElementById("open-status-box");
+    if (statusBox) {
+        statusBox.classList.toggle("is-closed", !s.isOpen);
+        setText("open-status-title", s.isOpen ? "OPEN NOW" : "CURRENTLY CLOSED");
+        setText(
+            "open-status-sub",
+            s.isOpen ? s.openStatusText : "We are closed right now — browse the menu and order when we reopen."
+        );
+    }
+}
+
+/** Keeps a record of every placed order so the admin panel can list them. */
+function recordOrder(order) {
+    if (!Array.isArray(content.orders)) content.orders = [];
+    content.orders.unshift(order);
+    content.orders = content.orders.slice(0, 200); // cap so storage cannot grow without bound
+    window.FlameData.save(content);
 }
